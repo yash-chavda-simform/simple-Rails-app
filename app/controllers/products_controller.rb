@@ -1,11 +1,12 @@
 class ProductsController < ApplicationController
+
+  before_action :find_id, only: [:show, :edit, :update, :destroy]
+
   def index
     @products=Product.all
   end
 
-  def show
-    find_id 
-  end
+  def show; end
   
   def new
     @product=Product.new
@@ -18,19 +19,15 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-    find_id  
-  end
+  def edit; end
 
   def update
-    find_id
     if @product.update(product_params)
       redirect_to root_path
     end 
   end
 
   def destroy
-    find_id
     @product.delete
     redirect_to root_path, status: :see_other
   end
