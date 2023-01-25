@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product=Product.find(params[:id]) 
+    find_id 
   end
   
   def new
@@ -14,25 +14,29 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to @product
+      redirect_to root_path
     end
   end
 
   def edit
-    @product=Product.find(params[:id])
+    find_id  
   end
 
   def update
-    @product=Product.find(params[:id])
+    find_id
     if @product.update(product_params)
       redirect_to root_path
     end 
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    find_id
     @product.delete
     redirect_to root_path, status: :see_other
+  end
+
+  def find_id
+    @product=Product.find(params[:id])
   end
 
   private
