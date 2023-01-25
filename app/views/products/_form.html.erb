@@ -1,0 +1,20 @@
+<%= form_with model: @product do |form| %>
+  <div>
+    <%= form.label :name,class:"col-sm-2 col-form-label" %><br>
+    <%= form.text_field :name, class:"form-control"%>
+    <% @product.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :price, class:"col-sm-2 col-form-label" %><br>
+    <%= form.text_area :price, class:"form-control" %>
+    <% @product.errors.full_messages_for(:price).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit "click",class:"btn btn-primary" %>
+  </div>
+<%end%>
