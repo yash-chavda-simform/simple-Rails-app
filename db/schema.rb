@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_20_123241) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_27_112027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authors", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.date "dob"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "alt_txt"
+    t.string "imageable_type", null: false
+    t.bigint "imageable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -21,4 +48,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_123241) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "books", "authors"
 end

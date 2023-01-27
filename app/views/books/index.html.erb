@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h3>Book List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Author_id</th>
+            <th scope="col">Details</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <%@books.each do |book|%>
+          <tr>
+            <td><%=book.name%></td>
+            <td><%=book.price%></td>
+            <td><%=book.author_id%></td>
+            <td><%= link_to 'Details' , book %>
+            </td>
+            <%# <button class="btn btn-primary">Button</button> %>
+            <td><%= link_to "Edit", edit_book_path(book), class:"btn btn-primary"%></td>
+            <td><%= link_to "Delete", book_path(book), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+          </tr>
+        <%end%>
+      </table>
+      <%= link_to "Add book", new_book_path, class:"btn btn-primary" %>
+    </div>
+  </body>
+</html>
