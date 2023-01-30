@@ -9,6 +9,7 @@ class BooksController < ApplicationController
   
   def new
     @book=Book.new
+    @author_options = Author.all.map{ |a| [a.first_name,a.id] }
   end
   
   def create
@@ -18,7 +19,9 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit; 
+    @author_options = Author.all.map{ |a| [ a.id ] }
+  end
 
   def update
     if @book.update(book_params)
@@ -37,6 +40,6 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:name,:price)
+    params.require(:book).permit(:name,:price,:author_id)
   end
 end

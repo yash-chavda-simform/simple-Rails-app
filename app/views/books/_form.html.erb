@@ -13,6 +13,10 @@
       <div><%= message %></div>
     <% end %>
   </div>
+  <div >
+    <%= form.label :Author, class:"col-sm-2 col-form-label" %><br>
+    <%= form.select(:author_id, @author_options) %>
+  </div>
   <br>
   <div>
     <%= form.submit "click",class:"btn btn-primary" %>

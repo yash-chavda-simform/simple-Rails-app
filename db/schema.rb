@@ -10,9 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_27_112027) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_30_042343) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "Authors_Books", id: false, force: :cascade do |t|
+    t.bigint "Author_id", null: false
+    t.bigint "Book_id", null: false
+  end
 
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
