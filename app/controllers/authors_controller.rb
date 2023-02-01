@@ -2,19 +2,19 @@ class AuthorsController < ApplicationController
   before_action :find_id, only: [:show, :edit, :update, :destroy]
 
   def index
-    @authors=Author.all
+    @authors = Author.all
   end
 
   def show; end
   
   def new
-    @author=Author.new
+    @author = Author.new
   end
   
   def create
     @author = Author.new(author_params)
     if @author.save
-      redirect_to :action => 'index'
+      redirect_to authors_path
     end
   end
 
@@ -22,17 +22,17 @@ class AuthorsController < ApplicationController
 
   def update
     if @author.update(author_params)
-      redirect_to :action => 'index'
+      redirect_to authors_path
     end 
   end
 
   def destroy
     @author.delete
-    redirect_to :action => 'index'
+    redirect_to authors_path
     end
 
   def find_id
-    @author=Author.find(params[:id])
+    @author = Author.find(params[:id])
   end
 
   private

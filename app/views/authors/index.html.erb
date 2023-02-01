@@ -15,16 +15,16 @@
             <th scope="col">Delete</th>
           </tr>
         </thead>
-        <%@authors.each do |author|%>
+        <% @authors.each do |author| %>
           <tr>
-            <td><%=author.last_name%></td>
-            <td><%=author.first_name%></td>
-            <td><%=author.dob%></td>
-            <td><%=author.email%></td>
+            <td><%= author.last_name %></td>
+            <td><%= author.first_name %></td>
+            <td><%= author.dob %></td>
+            <td><%= author.email %></td>
             <td><%= link_to 'Details' , author %>
             </td>
             <%# <button class="btn btn-primary">Button</button> %>
-            <td><%= link_to "Edit", edit_author_path(author), class:"btn btn-primary"%></td>
+            <td><%= link_to "Edit", edit_author_path(author), class:"btn btn-primary" %></td>
             <td><%= link_to "Delete", author_path(author), data: {
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure?"
