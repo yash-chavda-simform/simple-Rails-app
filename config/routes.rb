@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'facultys/index'
+  get 'students/index'
   get 'books/index'
   get 'authors/index'
   # get 'products/index'
@@ -6,6 +8,7 @@ Rails.application.routes.draw do
   resources :products
   resources :books
   resources :authors
+  resources :facultys
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products
