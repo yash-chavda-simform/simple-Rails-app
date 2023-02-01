@@ -15,8 +15,8 @@
         </thead>
         <%@products.each do |product|%>
           <tr>
-            <td><%=product.name%></td>
-            <td><%=product.price%></td>
+            <td><%= product.name %></td>
+            <td><%= product.price %></td>
             <td><%= link_to 'Details' , product %>
             </td>
             <%# <button class="btn btn-primary">Button</button> %>
