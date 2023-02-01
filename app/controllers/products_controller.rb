@@ -3,13 +3,13 @@ class ProductsController < ApplicationController
   before_action :find_id, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products=Product.all
+    @products = Product.all
   end
 
   def show; end
   
   def new
-    @product=Product.new
+    @product = Product.new
   end
   
   def create
@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
   end
 
   def find_id
-    @product=Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   private
