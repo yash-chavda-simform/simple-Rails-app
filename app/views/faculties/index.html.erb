@@ -6,16 +6,17 @@
       <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Firstname</th>
+            <th scope="col">FirstName</th>
             <th scope="col">LastName</th>
-            <th scope="col">Phone No.</th>
+            <th scope="col">PhoneNo</th>
             <th scope="col">Email</th>
-            <th scope="col">Birthdate</th>
+            <th scope="col">BirthDate</th>
             <th scope="col">Designation</th>
+            <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
         </thead>
-        <% @facultys.each do |faculty| %>
+        <% @faculties.each do |faculty| %>
           <tr>
             <td><%= faculty.first_name %></td>
             <td><%= faculty.last_name %></td>
@@ -24,6 +25,7 @@
             <td><%= faculty.birth_date %></td>
             <td><%= faculty.designation %></td>
           </td>
+          <td><%= link_to "Edit", edit_faculty_path(faculty), class:"btn btn-primary"%></td>
           <td><%= link_to "Delete", faculty_path(faculty), data: {
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure?"
@@ -31,7 +33,7 @@
         </tr>
       <% end %>
     </table>
-    <%= link_to "Add Faculty", new_faculty_path, class:"btn btn-primary" %>
+    <%= link_to "Add faculty", new_faculty_path, class:"btn btn-primary" %>
   </div>
 </body>
 </html>

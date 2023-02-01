@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  get 'facultys/index'
-  get 'students/index'
-  get 'books/index'
-  get 'authors/index'
   # get 'products/index'
   root "products#index"
   resources :products
   resources :books
   resources :authors
-  resources :facultys
+  resources :faculties
+  resources :students
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products
