@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h3>Faculty List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">PhoneNo</th>
+            <th scope="col">Email</th>
+            <th scope="col">BirthDate</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <% @faculties.each do |faculty| %>
+          <tr>
+            <td><%= faculty.first_name %></td>
+            <td><%= faculty.last_name %></td>
+            <td><%= faculty.phone_no %></td>
+            <td><%= faculty.email %></td>
+            <td><%= faculty.birth_date %></td>
+            <td><%= faculty.designation %></td>
+          </td>
+          <td><%= link_to "Edit", edit_faculty_path(faculty), class:"btn btn-primary"%></td>
+          <td><%= link_to "Delete", faculty_path(faculty), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "Add faculty", new_faculty_path, class:"btn btn-primary" %>
+  </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<%= form_with model: @student do |form| %>
+  <div>
+    <%= form.label :first_name, class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :first_name, class:"form-control" %>
+    <p class="text-danger"><%= @student.errors.messages_for(:first_name).first %></p>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :last_name, class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :last_name, class:"form-control" %>
+    <p class="text-danger"><%= @student.errors.messages_for(:last_name).first %></p>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :department, class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :department, class:"form-control" %>
+    <p class="text-danger"><%= @student.errors.messages_for(:department).first %></p>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :birth_date, class:"col-sm-2 col-form-label" %>
+    <%= form.date_field :birth_date%>
+    <p class="text-danger"><%= @student.errors.messages_for(:birth_date).first %></p>
+  </div>
+  <br>
+
+  <div>
+    <%= form.check_box :term_and_condition%>
+    <%= form.label :term_and_condition, class:"col-sm-2 col-form-label" %>
+    <p class="text-danger"><%= @student.errors.messages_for(:term_and_condition).first %></p>
+  </div>
+  <br>
+  
+  <div>
+    <%= form.submit "click",class:"btn btn-primary" %>
+  </div>
+<% end %>
