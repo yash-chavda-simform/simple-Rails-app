@@ -1,47 +1,40 @@
 <%= form_with model: @faculty do |form| %>
   <div>
-    <%= form.label :first_name,class:"col-sm-2 col-form-label" %><br>
+    <%= form.label :first_name,class:"col-sm-2 col-form-label" %>
     <%= form.text_field :first_name, class:"form-control" %>
-    <% @faculty.errors.messages_for(:first_name).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <%= @faculty.errors.messages_for(:first_name).first %>
+  </div><br>
+
   <div>
-    <%= form.label :last_name, class:"col-sm-2 col-form-label" %><br>
+    <%= form.label :last_name, class:"col-sm-2 col-form-label" %>
     <%= form.text_field :last_name, class:"form-control" %>
-    <% @faculty.errors.messages_for(:last_name).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <%= @faculty.errors.messages_for(:last_name).first %>
+  </div><br>
+
   <div>
-    <%= form.label :phone_no, class:"col-sm-2 col-form-label" %><br>
+    <%= form.label :phone_no, class:"col-sm-2 col-form-label" %>
     <%= form.text_field :phone_no, class:"form-control" %>
-    <% @faculty.errors.messages_for(:phone_no).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <%= @faculty.errors.messages_for(:phone_no).first %>
+  </div><br>
+
   <div>
-    <%= form.label :email, class:"col-sm-2 col-form-label" %><br>
+    <%= form.label :email, class:"col-sm-2 col-form-label" %>
     <%= form.text_field :email, class:"form-control" %>
-    <% @faculty.errors.messages_for(:email).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <%= @faculty.errors.messages_for(:email).first %>
+  </div><br>
+
   <div>
-    <%= form.label :birth_date, class:"col-sm-2 col-form-label" %><br>
+    <%= form.label :birth_date, class:"col-sm-2 col-form-label" %>
     <%= form.date_field :birth_date%>
-    <% @faculty.errors.messages_for(:birth_date).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+    <%= @faculty.errors.messages_for(:birth_date).first %>
+  </div><br>
+
   <div>
-    <%= form.label :designation, class:"col-sm-2 col-form-label" %><br>
+    <%= form.label :designation, class:"col-sm-2 col-form-label" %>
     <%= form.text_field :designation, class:"form-control" %>
-    <% @faculty.errors.messages_for(:designation).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
-  <br>
+    <%= @faculty.errors.messages_for(:designation).first %>
+  </div><br>
+  
   <div>
     <%= form.submit "click",class:"btn btn-primary" %>
   </div>
