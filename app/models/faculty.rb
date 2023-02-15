@@ -1,6 +1,6 @@
 class Faculty < ApplicationRecord
   PHONE_REGEX = /\A\d{10}\z/
-  validates :last_name, :first_name, :birth_date, :email, :designation, :phone_no,  presence: true
+  validates :last_name, :first_name, :email, :designation, :phone_no,  presence: true
   validates :phone_no , format:{ with:PHONE_REGEX}
   validates :email, uniqueness: true
   validates :birth_date, comparison: {less_than: Date.today, message:"birthdate can't be in future"}
@@ -8,13 +8,14 @@ class Faculty < ApplicationRecord
   # validates :designation,  
 
   #callbacks
-  after_validation :set_message, on: [ :create, :update]
-  # before_validation :check_date
+  after_validation :set_message,:check_date, on: [ :create, :update]
   after_destroy :confirm_delete
   after_validation :validate_email, on: [:create]
+
   after_initialize do |faculty|
     puts "You have initialized an object!"
   end
+  
   after_find do |faculty|
     puts "You have found an object!"
   end
