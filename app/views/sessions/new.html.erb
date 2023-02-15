@@ -1,0 +1,13 @@
+<div class="login">
+  <div class="container">
+    <div class="form">
+      <h1>Sign In</h1>
+      <%= form_with url: sessions_path do %>
+        <%= email_field_tag "email" %>
+        <%= password_field_tag "password" %>
+        <%= submit_tag "LogIn", class: "btn-submit" %>
+      <% end %> 
+      <%= link_to "Create Account", new_user_path %>
+    </div>
+  </div>
+</div>
