@@ -3,11 +3,12 @@
     <div class="form">
       <h1>Sign up</h1>
       <%= form_with model: @user do |u| %>
-        <%= u.text_field :email, :placeholder => "email" %>
-        <%= u.password_field :password, :placeholder => "Password" %>
+        <%= u.text_field :email, :placeholder => "email" %><br>
+        <%= u.text_area :address, :placeholder => "address" %><br>
+        <%= u.password_field :password, :placeholder => "Password" %><br>
         <%= u.submit "Create an account", class: "btn-submit" %>
       <% end %>
-      <%= link_to "Already have account", new_sessions_path %>
+      <%= link_to "Already have account", sessions_path %>
     </div>
   </div>
 </div>

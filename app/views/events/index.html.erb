@@ -2,34 +2,39 @@
 <html lang="en">
   <body>
     <div class="container">
+      <%=  form_with(url: "events/filter" ) do |form| %>
+        <div>
+          <%= form.label :category_id %>
+          <%= form.select(:category_id, @category_options) %>
+          <%= form.submit "Filter" %>
+        </div>
+      <% end %>
       <h3>Event List</h3>
       <table class="table">
         <thead class="thead-dark">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Category</th>
             <th scope="col">Event Date</th>
+            <th scope="col">Contact Email</th>
             <th scope="col">Details</th>
-            <th scope="col">Edit</th>
-            <th scope="col">delete</th>
+            <th scope="col">Enrol</th>
           </tr>
         </thead>
         <% @events.each do |event| %>
           <tr>
             <td><%= event.name %></td>
             <td><%= event.description %></td>
+            <td><%= event.category.name %></td>
             <td><%= event.event_date %></td>
-            <td><%= link_to 'Details' , event %></td>
-            <td><%= link_to "Edit", edit_event_path(event), class:"btn btn-primary" %></td>
-            <td><%= link_to "Delete", event_path(event), data: {
-                        turbo_method: :delete,
-                        turbo_confirm: "Are you sure?"
-                      }, class:"btn btn-danger" %></td>
-          </tr>
-        <%end%>
-      </table>
-      <%= link_to "Add event", events_new_path, class:"btn btn-primary" %>
-      <%= link_to "Logout", sessions_logout_path, class:"btn btn-primary" %>
-    </div>
-  </body>
-</html>
+            <td><%= event.user.email %></td>
+            <td><%= link_to 'Details', event %></td>
+            <td><%= link_to 'Enrol',{controller: "enrols", action: "show", id:event}, class:"btn btn-primary" %>
+            </tr>
+          <%end%>
+        </table>
+        <%=  link_to 'Back', sessions_userOptions_path,  class:"btn btn-primary" %>
+      </div>
+    </body>
+  </html>

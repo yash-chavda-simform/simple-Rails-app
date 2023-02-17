@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   get 'demo/index'
-  get 'events/index'
-  get 'events/show'
-  get 'events/new'
-  get 'events/edit'
-  get 'users/signup'  => 'users#new'
+  # get 'events/index'
+  # get 'events/show'
+  # get 'events/new'
+  # get 'events/edit'
+  get 'users/signup', to: 'users#new'
   get 'sessions/logout', to: "sessions#logout"
-  
+  get 'sessions/profile', to: "sessions#profile"
+  get 'sessions/userOptions', to: "sessions#user_options"
+  post 'events/filter', to: 'events#filter'
   root "products#index"
   resources :products
   resources :books
@@ -15,7 +17,8 @@ Rails.application.routes.draw do
   resources :students
   resources :events
   resources :users
-  resource  :sessions
+  resources :sessions
+  resources :enrols
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products

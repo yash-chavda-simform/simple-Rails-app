@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h3>Your Event List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Event Date</th>
+            <th scope="col">Contact Email</th>
+            <th scope="col">Details</th>
+            <th scope="col">Edit</th>
+            <th scope="col">delete</th>
+          </tr>
+        </thead>
+        <% @events.each do |event| %>
+          <tr>
+            <td><%= event.name %></td>
+            <td><%= event.description %></td>
+            <td><%= event.event_date %></td>
+            <td><%= event.user.email %></td>
+            <td><%= link_to 'Details' , event %></td>
+            <td><%= link_to "Edit", edit_event_path(event), class:"btn btn-primary" %></td>
+            <td><%= link_to "Delete", event_path(event), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+          </tr>
+        <%end%>
+      </table>
+      <%= link_to "Add event", events_new_path, class:"btn btn-primary" %>
+      <%= link_to "Back", sessions_userOptions_path, class:"btn btn-primary" %>
+    </div>
+  </body>
+</html>
