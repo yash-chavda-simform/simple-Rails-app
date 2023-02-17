@@ -6,7 +6,7 @@ class Student < ApplicationRecord
   #callbacks
   before_validation :check_date
   after_validation :validate_email, on: [:create]
-  after_destroy :print_message
+  after_destroy :print_message, if: :check_student
   before_destroy :print_before
 
   after_initialize do |student|
@@ -18,10 +18,12 @@ class Student < ApplicationRecord
   end
 
   private
+  def check_student
+    self.valid?
+  end
+
   def check_date
-    if birth_date.nil?
-      self.birth_date = 01/02/2000
-    end
+    puts "validating dob"
   end
   
   def validate_email

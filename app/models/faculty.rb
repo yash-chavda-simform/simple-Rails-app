@@ -8,7 +8,7 @@ class Faculty < ApplicationRecord
   # validates :designation,  
 
   #callbacks
-  after_validation :set_message,:check_date, on: [ :create, :update]
+  after_validation :set_message, on: [ :create, :update]
   after_destroy :confirm_delete
   after_validation :validate_email, on: [:create]
 
@@ -23,12 +23,6 @@ class Faculty < ApplicationRecord
   private
     def set_message
       puts("Date Of Birth Is valid")
-    end
-  
-    def check_date
-      if birth_date.nil?
-        self.birth_date = 01/02/2000
-      end
     end
 
     def validate_email
