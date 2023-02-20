@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def index
+    @user = User.find(session[:user_id])
+    @event = @user.organized_event
   end
   
   def new

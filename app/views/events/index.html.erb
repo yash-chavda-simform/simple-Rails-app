@@ -20,6 +20,8 @@
             <th scope="col">Contact Email</th>
             <th scope="col">Details</th>
             <th scope="col">Enrol</th>
+            <th scope="col">comments</th>
+            <th scope="col">Read Comment</th>
           </tr>
         </thead>
         <% @events.each do |event| %>
@@ -28,13 +30,15 @@
             <td><%= event.description %></td>
             <td><%= event.category.name %></td>
             <td><%= event.event_date %></td>
-            <td><%= event.user.email %></td>
+            <td><%= event.organizer.email %></td>
             <td><%= link_to 'Details', event %></td>
-            <td><%= link_to 'Enrol',{controller: "enrols", action: "show", id:event}, class:"btn btn-primary" %>
-            </tr>
-          <%end%>
-        </table>
-        <%=  link_to 'Back', sessions_userOptions_path,  class:"btn btn-primary" %>
-      </div>
-    </body>
-  </html>
+            <td><%= link_to 'Enrol',{controller: "enrols", action: "show", id:event}, class:"btn btn-primary" %></td>
+            <td><%= link_to 'Add Comment',{controller: "comments", action: "add", id:event}, class:"btn btn-primary" %></td>
+            <td><%= link_to 'Read Comment',{controller: "comments", action: "show", id:event}, class:"btn btn-primary" %></td>
+          </tr>
+        <%end%>
+      </table>
+      <%=  link_to 'Back', sessions_userOptions_path,  class:"btn btn-primary" %>
+    </div>
+  </body>
+</html>

@@ -16,7 +16,7 @@
     <%= form.label :Category %><br>
     <%= form.select(:category_id, @category_options) %>
   </div>
-  <%= form.hidden_field :user_id, value: session[:user_id]  %>
+  <%= form.hidden_field :organizer_id, value: session[:user_id] %>
   <div>
     <%= form.submit %>
   </div>

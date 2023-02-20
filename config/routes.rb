@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get 'sessions/logout', to: "sessions#logout"
   get 'sessions/profile', to: "sessions#profile"
   get 'sessions/userOptions', to: "sessions#user_options"
+  get '/comments/like/:id', to: 'comments#like'
+  get '/comments/unlike/:id', to: 'comments#unlike'
+  get '/comments/add/:id', to: 'comments#add'
   post 'events/filter', to: 'events#filter'
   root "products#index"
   resources :products
@@ -19,6 +22,7 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :enrols
+  resources :comments
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products

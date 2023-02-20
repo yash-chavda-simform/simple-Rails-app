@@ -5,8 +5,8 @@ class EnrolsController < ApplicationController
         @enrol = Enrol.new(user_id:session[:user_id],event_id:params[:id])
         @enrol.save  
       else
-        puts "date is already there"  
+        puts "Already Enroled in this Event"  
       end
-      redirect_to events_index_path
+      redirect_to events_path
   end
 end

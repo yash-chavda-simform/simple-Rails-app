@@ -5,9 +5,6 @@ class EventsController < ApplicationController
     session[:cat_id]
     @category_options = Category.all.map{ |a| [a.name,a.id] }   
     if(session[:cat_id] == nil)
-      puts "hello"
-      puts "hello"
-      puts "hello"
       @events = Event.all
     else
       @events = Event.where(category_id:session[:cat_id])
@@ -30,7 +27,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @category_options = Category.all.map{ |a| [a.name,a.id] }
+  end
 
   def update
     if @event.update(event_params)
@@ -65,6 +64,6 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    params.require(:event).permit(:name, :description, :event_date, :user_id, :category_id)
+    params.require(:event).permit(:name, :description, :event_date, :category_id, :organizer_id,)
   end
 end
