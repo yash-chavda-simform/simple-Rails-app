@@ -1,0 +1,14 @@
+<div class="login">
+  <div class="container">
+    <div class="form">
+      <h1>Sign up</h1>
+      <%= form_with model: @user do |u| %>
+        <%= u.text_field :email, :placeholder => "email" %><br>
+        <%= u.text_area :address, :placeholder => "address" %><br>
+        <%= u.password_field :password, :placeholder => "Password" %><br>
+        <%= u.submit "Create an account", class: "btn-submit" %>
+      <% end %>
+      <%= link_to "Already have account", new_session_path %>
+    </div>
+  </div>
+</div>

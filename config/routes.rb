@@ -1,11 +1,23 @@
 Rails.application.routes.draw do
-  # get 'products/index'
+  get 'demo/index'
+  get 'users/signup', to: 'users#new'
+  get 'sessions/logout', to: "sessions#logout"
+  get 'sessions/profile', to: "sessions#profile"
+  get '/comments/like/:id', to: 'comments#like'
+  get '/comments/unlike/:id', to: 'comments#unlike'
+  get '/comments/add/:id', to: 'comments#add'
+  post 'events/filter', to: 'events#filter'
   root "products#index"
   resources :products
   resources :books
   resources :authors
   resources :faculties
   resources :students
+  resources :events
+  resources :users
+  resources :sessions
+  resources :users_events
+  resources :comments
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products

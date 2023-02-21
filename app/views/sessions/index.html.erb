@@ -1,0 +1,33 @@
+<%= render 'form' %>
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h3>Your Event List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <% @event.each do |e| %>
+          <tr>
+            <td><%= e.name %></td>
+            <td><%= e.description %></td>
+            
+            <%# <button class="btn btn-primary">Button</button> %>
+            <td><%= link_to "Edit", edit_event_path(e), class:"btn btn-primary" %></td>
+            <td><%= link_to "Delete", event_path(e), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+          </tr>
+        <% end %>
+      </table>
+      <%= link_to "Add Event", new_event_path, class:"btn btn-primary" %>
+    </div>
+  </body>
+</html>

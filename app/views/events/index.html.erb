@@ -1,0 +1,44 @@
+<%= render 'form' %>
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <%=  form_with(url: "events/filter" ) do |form| %>
+        <div>
+          <%= form.label :category_id %>
+          <%= form.select(:category_id, @category_options) %>
+          <%= form.submit "Filter" %>
+        </div>
+      <% end %>
+      <h3>Event List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Event Date</th>
+            <th scope="col">Contact Email</th>
+            <th scope="col">Details</th>
+            <th scope="col">Enrol</th>
+            <th scope="col">comments</th>
+            <th scope="col">Read Comment</th>
+          </tr>
+        </thead>
+        <% @events.each do |event| %>
+          <tr>
+            <td><%= event.name %></td>
+            <td><%= event.description %></td>
+            <td><%= event.category.name %></td>
+            <td><%= event.event_date %></td>
+            <td><%= event.organizer.email %></td>
+            <td><%= link_to 'Details', event %></td>
+            <td><%= link_to 'Enrol',{controller: "users_events", action: "show", id:event}, class:"btn btn-primary" %></td>
+            <td><%= link_to 'Add Comment',{controller: "comments", action: "add", id:event}, class:"btn btn-primary" %></td>
+            <td><%= link_to 'Read Comment',{controller: "comments", action: "show", id:event}, class:"btn btn-primary" %></td>
+          </tr>
+        <%end%>
+      </table>
+    </div>
+  </body>
+</html>

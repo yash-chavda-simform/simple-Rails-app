@@ -1,0 +1,8 @@
+<%= render 'form' %>
+<h2>Hello <%= @detail.email %> </h2>
+<h3>You have taken part in below event</h3>
+<ul>
+  <% @event.each do |e|%>
+    <li><%= e.name %></li>
+  <% end %>
+</ul>
