@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(event_params)
     if @comment.save
-      redirect_to events_path
+      redirect_to comment_path(session[:current_event])
     end
   end
 

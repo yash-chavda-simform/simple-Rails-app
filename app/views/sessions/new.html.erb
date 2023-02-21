@@ -2,12 +2,12 @@
   <div class="container">
     <div class="form">
       <h1>Sign In</h1>
-      <%= form_with url: sessions_path do %>
-        <%= email_field_tag "email" %>
-        <%= password_field_tag "password" %>
-        <%= submit_tag "LogIn", class: "btn-submit" %>
+      <%= form_with url: sessions_path do |f| %>
+        <%= f.text_field :email, :placeholder => "email" %><br><br>
+        <%= f.password_field :password, :placeholder => "Password" %><br><br>
+        <%= f.submit "Log In", class: "btn btn-primary" %>
       <% end %> 
-      <%= link_to "Create Account", new_user_path %>
+      <%= link_to "Already Have Account", new_user_path %>
     </div>
   </div>
 </div>

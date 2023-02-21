@@ -4,4 +4,4 @@
   <%= link_to 'Like',{controller: "comments", action: "like", id:c} %> 
 	<%= link_to 'UnLike',{controller: "comments", action: "unlike", id:c} %>&nbsp<%= c.likes.count %><br><br>
 <% end %><br><br>
-<%= link_to 'Back',events_path %>
+<%=  link_to 'Back', events_path,  class:"btn btn-primary" %>

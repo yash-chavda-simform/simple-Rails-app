@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
   get 'demo/index'
-  # get 'events/index'
-  # get 'events/show'
-  # get 'events/new'
-  # get 'events/edit'
   get 'users/signup', to: 'users#new'
   get 'sessions/logout', to: "sessions#logout"
   get 'sessions/profile', to: "sessions#profile"
-  get 'sessions/userOptions', to: "sessions#user_options"
   get '/comments/like/:id', to: 'comments#like'
   get '/comments/unlike/:id', to: 'comments#unlike'
   get '/comments/add/:id', to: 'comments#add'

@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: session_params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id 
-      redirect_to sessions_userOptions_path	
+      redirect_to events_path	
     end
   end
 
@@ -28,8 +28,5 @@ class SessionsController < ApplicationController
   def logout
     session[:user_id] = nil
     redirect_to new_session_path
-  end
-  
-  def user_options
   end
 end
