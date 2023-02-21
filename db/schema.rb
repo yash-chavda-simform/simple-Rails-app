@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_20_132743) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_21_062239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,15 +59,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_132743) do
     t.bigint "event_id"
     t.index ["event_id"], name: "index_comments_on_event_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "enrols", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_enrols_on_event_id"
-    t.index ["user_id"], name: "index_enrols_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -135,13 +126,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_20_132743) do
     t.string "password_digest"
   end
 
+  create_table "users_events", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_users_events_on_event_id"
+    t.index ["user_id"], name: "index_users_events_on_user_id"
+  end
+
   add_foreign_key "books", "authors"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
-  add_foreign_key "enrols", "events"
-  add_foreign_key "enrols", "users"
   add_foreign_key "events", "categories"
   add_foreign_key "events", "users", column: "organizer_id"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
+  add_foreign_key "users_events", "events"
+  add_foreign_key "users_events", "users"
 end

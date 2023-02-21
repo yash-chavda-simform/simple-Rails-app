@@ -44,8 +44,7 @@ class CommentsController < ApplicationController
   end
 
   private
-def event_params
-  params.require(:comment).permit(:content, :user_id, :event_id)
-end
-  
+  def event_params
+    params.require(:comment).permit(:content, :user_id, :event_id)
+  end
 end

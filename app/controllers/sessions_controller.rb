@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def profile
-    @details = User.find_by(id:session[:user_id]) 
+    @details = User.find_by(id:session[:user_id])
     @event = @details.events
   end
 

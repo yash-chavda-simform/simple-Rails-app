@@ -50,7 +50,7 @@ class EventsController < ApplicationController
 
   def enroll
     puts params[:id]
-    @event = Event.find(params[:id])
+    find_id
     puts @event
   end 
 
@@ -64,6 +64,6 @@ class EventsController < ApplicationController
 
   private
   def event_params
-    params.require(:event).permit(:name, :description, :event_date, :category_id, :organizer_id,)
+    params.require(:event).permit(:name, :description, :event_date, :category_id, :organizer_id)
   end
 end

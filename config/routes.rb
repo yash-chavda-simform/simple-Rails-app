@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :events
   resources :users
   resources :sessions
-  resources :enrols
+  resources :users_events
   resources :comments
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
