@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   end
 
   def show
-    @comment = Comment.where(event_id: params[:id])
+    @comments = Comment.where(event_id: params[:id])
     session[:current_event] = params[:id]
   end
 
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(event_params)
     if @comment.save
-      redirect_to comment_path(session[:current_event])
+      redirect_comments
     end
   end
 
@@ -24,25 +24,28 @@ class CommentsController < ApplicationController
   end
 
   def like
-    @l = Like.where(comment_id:params[:id],user_id:session[:user_id])
-    if(@l.empty?)
+    @likes = Like.where(comment_id:params[:id],user_id:session[:user_id])
+    if(@likes.empty?)
       @like = Like.create(comment_id:params[:id],user_id:session[:user_id])
       if(@like)
-        redirect_to comment_path(session[:current_event])  
+        redirect_comments  
       end
     else
-      redirect_to comment_path(session[:current_event])
+      redirect_comments
     end    
   end
 
   def unlike
-    @l = Like.find_by(comment_id:params[:id],user_id:session[:user_id])
-    if(@l)
-      @l.destroy    
+    @like = Like.find_by(comment_id:params[:id],user_id:session[:user_id])
+    if(@like)
+      @like.destroy    
     end
-    redirect_to comment_path(session[:current_event])
+    redirect_comments
   end
 
+  def redirect_comments
+    redirect_comments  
+  end
   private
   def event_params
     params.require(:comment).permit(:content, :user_id, :event_id)

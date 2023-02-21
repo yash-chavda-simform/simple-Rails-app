@@ -1,4 +1,4 @@
-<% @comment.each do |c| %>
+<% @comments.each do |c| %>
   <%= c.user.email %><br>
   <%= c.content %><br>
   <%= link_to 'Like',{controller: "comments", action: "like", id:c} %> 

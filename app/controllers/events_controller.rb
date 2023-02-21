@@ -3,7 +3,7 @@ class EventsController < ApplicationController
 
   def index
     session[:cat_id]
-    @category_options = Category.all.map{ |a| [a.name,a.id] }   
+    category_options   
     if(session[:cat_id] == nil)
       @events = Event.all
     else
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   
   def new
     @event = Event.new
-    @category_options = Category.all.map{ |a| [a.name,a.id] }
+    category_options  
   end
   
   def create
@@ -28,7 +28,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @category_options = Category.all.map{ |a| [a.name,a.id] }
+    category_options
   end
 
   def update
@@ -62,6 +62,10 @@ class EventsController < ApplicationController
     redirect_to events_path		
   end
 
+  def category_options
+    @category_options = Category.all.map{ |a| [a.name,a.id] }
+  end
+  
   private
   def event_params
     params.require(:event).permit(:name, :description, :event_date, :category_id, :organizer_id)

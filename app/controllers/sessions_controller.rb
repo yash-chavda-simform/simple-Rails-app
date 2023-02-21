@@ -21,8 +21,8 @@ class SessionsController < ApplicationController
   end
 
   def profile
-    @details = User.find_by(id:session[:user_id])
-    @event = @details.events
+    @detail = User.find_by(id:session[:user_id])
+    @event = @detail.events
   end
 
   def logout
