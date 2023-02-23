@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_21_062239) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_22_115637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_21_062239) do
     t.bigint "event_id"
     t.index ["event_id"], name: "index_comments_on_event_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.integer "age"
+    t.integer "no_of_order"
+    t.boolean "full_time_available"
+    t.bigint "salary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "lock_version", default: 0, null: false
   end
 
   create_table "events", force: :cascade do |t|

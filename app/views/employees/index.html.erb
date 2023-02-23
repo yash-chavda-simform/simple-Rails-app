@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <div>
+        <%= form_with(url: "employees/checkemail" ) do |form| %>
+          <div>
+            <%= form.label :email %>
+            <%= form.text_field :email %>
+            <%= form.submit "Find", class:"btn btn-primary" %>
+          </div>
+        <% end %>
+        <%= render "flash_message" %>
+        <h3>Employee List</h3>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Age</th>
+              <th scope="col">Total Orders</th>
+              <th scope="col">Full Time Available</th>
+              <th scope="col">Salary</th>
+              <th scope="col">Details</th>
+              <th scope="col">Edit</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <% @employees.each do |e|%>
+            <tr>
+              <td><%= e.first_name + " " + e.last_name %></td>
+              <td><%= e.email %></td>
+              <td><%= e.age %></td>
+              <td><%= e.no_of_order %></td>
+              <td><%= e.full_time_available %></td>
+              <td><%= e.salary %></td>
+              <td><%= link_to 'Details' , e %>
+              </td>
+              <td><%= link_to "Edit", edit_employee_path(e), class:"btn btn-primary"%></td>
+              <td><%= link_to "Delete", employee_path(e), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+            </tr>
+          <%end%>
+        </table>
+        <%= link_to "Order Increase By 1", employees_increase_path, class:"btn btn-primary" %>
+        <%= link_to "Order Decrease By 1", employees_decrease_path, class:"btn btn-primary" %>
+        <%= link_to "Add Employee", new_employee_path, class:"btn btn-primary" %>
+        <%= link_to "Check Result", employees_result_path, class:"btn btn-primary" %>
+      </div>
+    </body>
+  </html>
