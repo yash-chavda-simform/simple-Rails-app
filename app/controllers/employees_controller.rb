@@ -57,6 +57,8 @@ class EmployeesController < ApplicationController
     @select_employees = Employee.select(:email).where(no_of_order:5).reselect(:first_name, :last_name, :email)
     @reorder_orders = Employee.order(no_of_order: :asc).reorder(no_of_order: :desc)
     @reverse_orders = Employee.order(salary: :asc).reverse_order
+    @no_of_orders = Employee.select("no_of_order").group("no_of_order").order("no_of_order")
+    @employees = Employee.where("no_of_order > ?",5)
   end
 
   def find_id
