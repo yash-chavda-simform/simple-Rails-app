@@ -22,7 +22,7 @@ class EmployeesController < ApplicationController
 
 	def update
     @id = Employee.find(params[:id])
-    if @employee.update(employee_params.merge(lock_version: @id.lock_version))
+    if @employee.update(employee_params)
       redirect_to_employee
     else
     end
