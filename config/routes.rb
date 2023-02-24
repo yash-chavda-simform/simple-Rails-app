@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   resources :users_events
   resources :comments
   resources :employees
+  resources :customers
+  resources :orders
+  resources :query_products
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products

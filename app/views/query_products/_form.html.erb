@@ -1,0 +1,29 @@
+<%= form_with model: @product do |form| %>
+  <div>
+    <%= form.label :title,class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :title , class:"form-control"%>
+  </div>
+  <div>
+    <%= form.label :description,class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :description , class:"form-control"%>
+  </div>
+  <div>
+    <%= form.label :price,class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :price , class:"form-control"%>
+  </div>
+  <div>
+    <%= form.label :capacity,class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :capacity , class:"form-control"%>
+  </div>
+  <div>
+    <%= form.label :is_active,class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :is_active , class:"form-control"%>
+  </div>
+  <br>
+  <%= form.label :status %>
+  <%= form.select :status, QueryProduct.statuses.keys %>
+  <br>
+  <div>
+    <%= form.submit "click",class:"btn btn-primary" %>
+  </div>
+<%end%>

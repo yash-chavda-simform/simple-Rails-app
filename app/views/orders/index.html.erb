@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h3>Order List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Product</th>
+            <th scope="col">Status</th>
+            <th scope="col">Customer</th>
+            <th scope="col">detials</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.quantity %></td>
+            <td><%= order.query_product.price * order.quantity %></td>
+            <td><%= order.query_product.title %></td>
+            <td><%= order.status %></td>
+            <td><%= order.customer.first_name %></td>
+            <td><%= link_to 'Details' , order %>
+            </td>
+            <td><%= link_to "Edit", edit_order_path(order), class:"btn btn-primary" %></td>
+            <td><%= link_to "Delete", order_path(order), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+          </tr>
+        <%end%>
+      </table>
+      <%= link_to "Add Customer", new_order_path, class:"btn btn-primary" %>
+    </div>
+  </body>
+</html>
