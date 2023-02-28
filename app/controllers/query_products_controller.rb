@@ -2,10 +2,16 @@ class QueryProductsController < ApplicationController
   before_action :find_id, only: [:show, :edit, :update, :destroy]
 
   def index
+    @products = QueryProduct.unscoped.all
+  end
+
+  def scoped
     @products = QueryProduct.all
   end
 
-  def show; end
+  def show 
+    @counts = @product.orders.count
+  end
   
   def new
     @product = QueryProduct.new
@@ -34,7 +40,7 @@ class QueryProductsController < ApplicationController
     end
 
   def find_id
-    @product = QueryProduct.find(params[:id])
+    @product = QueryProduct.unscoped.find(params[:id])
   end
 
   private

@@ -1,19 +1,22 @@
 <%= form_with model: @order do |form| %>
   <div>
     <%= form.label :quantity,class:"col-sm-2 col-form-label" %>
-    <%= form.text_field :quantity , class:"form-control"%>
-  </div>
-  <div>
-    <%= form.label :product,class:"col-sm-2 col-form-label" %>
-    <%= form.text_field :product , class:"form-control"%>
+    <%= form.text_field :quantity , class:"form-control" %>
   </div>
   <br>
-  <%= form.label :status %>
-  <%= form.select :status, Order.statuses.keys %>
+  <div>
+    <%= form.label :query_product_id, "Product" %>
+    <%= form.collection_select :query_product_id, @products, :id, :title %>
+  </div>
   <br>
   <div>
-    <%= form.label :customer,class:"col-sm-2 col-form-label" %>
-    <%= form.text_field :customer , class:"form-control"%>
+    <%= form.label :status %>
+    <%= form.select :status, Order.statuses.keys %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :customer_id, "Customer" %>
+    <%= form.collection_select :customer_id, @customers, :id, :first_name %>
   </div>
   <div>
     <%= form.submit "click",class:"btn btn-primary" %>

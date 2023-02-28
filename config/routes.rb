@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get 'demo/index'
+  get 'query_products/scoped', to: 'query_products#scoped'
   get 'users/signup', to: 'users#new'
-  get 'sessions/logout', to: "sessions#logout"
-  get 'sessions/profile', to: "sessions#profile"
+  get 'users/signup', to: 'users#new'
+  get 'orders/result', to: 'orders#result'
+  get 'sessions/logout', to: 'sessions#logout'
+  get 'sessions/profile', to: 'sessions#profile'
   get '/comments/like/:id', to: 'comments#like'
   get '/comments/unlike/:id', to: 'comments#unlike'
   get '/comments/add/:id', to: 'comments#add'

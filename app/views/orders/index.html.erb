@@ -2,6 +2,21 @@
 <html lang="en">
   <body>
     <div class="container">
+      <div>
+        <%= form_with url: orders_path, method: :get do |form| %>
+          <%= form.label :product_id, "Product Name" %>
+          <%= form.collection_select :product_id, @products, :id, :title %>
+          <%= form.submit "Filter", class:"btn btn-primary" %>
+        <% end %><br>
+        <%= form_with url: orders_path, method: :get do |form| %>
+          <%= form.label :filter, "Product status" %>
+          <%= form.collection_select :filter, @filters, :status, :status %>
+          <%= form.submit "Filter", class:"btn btn-primary" %>
+        <% end %>
+        <%= form_with url: orders_path, method: :get do |form| %>
+          <%= form.submit "All", class:"btn btn-primary" %>
+        <% end %>
+      </div>
       <h3>Order List</h3>
       <table class="table">
         <thead class="thead-dark">
@@ -11,7 +26,7 @@
             <th scope="col">Product</th>
             <th scope="col">Status</th>
             <th scope="col">Customer</th>
-            <th scope="col">detials</th>
+            <th scope="col">details</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
           </tr>
@@ -19,7 +34,6 @@
         <% @orders.each do |order| %>
           <tr>
             <td><%= order.quantity %></td>
-            <td><%= order.query_product.price * order.quantity %></td>
             <td><%= order.query_product.title %></td>
             <td><%= order.status %></td>
             <td><%= order.customer.first_name %></td>
@@ -33,7 +47,8 @@
           </tr>
         <%end%>
       </table>
-      <%= link_to "Add Customer", new_order_path, class:"btn btn-primary" %>
-    </div>
-  </body>
+      <%= link_to "Add Order", new_order_path, class:"btn btn-primary" %>
+    </table>
+  </div>
+</body>
 </html>
