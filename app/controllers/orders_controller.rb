@@ -4,10 +4,14 @@ class OrdersController < ApplicationController
   def index
     fetch_data
     @filters = Order.select(:status).distinct
+
     if params[:product_id].present?
       @orders = Order.includes(:customer).where(query_product_id:params[:product_id])  
     elsif params[:filter].present?
       @orders = Order.includes(:customer).where(status:params[:filter])
+    elsif params[:product_name].present?
+      @product = QueryProduct.find_by(title: params[:product_name].downcase)
+      @orders = Order.where(query_product_id:@product.id)
     else
       @orders = Order.includes(:customer) 
     end
@@ -54,6 +58,8 @@ class OrdersController < ApplicationController
   end
 
   def result
+    @products = Product.joins(:orders).distinct.select('customers.id','SUM(orders.quantity) As total_quantity').group('customers.id')
+    # c=Customer.joins(:orders).distinct.select('customers.id').group('customers.id').order('SUM(orders.quantity) desc').sum('orders.quantity')
     @top_products = 
       Order
         .group(:customer_id)
