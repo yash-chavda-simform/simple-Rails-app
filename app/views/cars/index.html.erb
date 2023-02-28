@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h3>Car List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Color</th>
+            <th scope="col">Details</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <%@cars.each do |car|%>
+          <tr>
+            <td><%= car.name %></td>
+            <td><%= car.color %></td>
+            <td><%= link_to 'Details', car %>
+            </td>
+            <%# <button class="btn btn-primary">Button</button> %>
+            <td><%= link_to "Edit", edit_car_path(car), class:"btn btn-primary"%></td>
+            <td><%= link_to "Delete", car_path(car), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+          </tr>
+        <%end%>
+      </table>
+      <%= link_to "Add Car", new_car_path, class:"btn btn-primary" %>
+      <%= link_to "Logout", new_users_logout_path, class:"btn btn-primary" %>
+      <%= link_to "Search", cars_search_path, class:"btn btn-primary" %>
+    </div>
+  </body>
+</html>

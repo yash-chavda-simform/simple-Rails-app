@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Login</h1>
+  <%= render 'flash' %>
+  <%= form_with model: @user, url: new_users_login_path, method: :post do |form| %>
+    <div>
+      <%= form.label :email, class:"col-sm-2 col-form-label" %><br>
+      <%= form.text_field :email, class:"form-control" %>
+    </div>
+    <div>
+      <%= form.label :password, class:"col-sm-2 col-form-label" %><br>
+      <%= form.password_field :password, class:"form-control" %>
+    </div>
+    <br>
+    <div>
+      <%= form.submit "LogIn",class:"btn btn-primary" %>
+    </div>
+  <% end %>
+  <%= link_to "Don't have account", new_users_signup_path %>
+</div>
