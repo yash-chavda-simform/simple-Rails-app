@@ -21,6 +21,21 @@
           </tr>
         <%end%>
       </table>
+      <h3>most sales product by price</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Total Price</th>
+          </tr>
+        </thead>
+        <% @top_prices.each do |price| %>
+          <tr>
+            <td><%= price.first_name %></td>
+            <td><%= price.total_price %></td>
+          </tr>
+        <%end%>
+      </table>
       <h3>most booked order of product</h3>
       <table class="table">
         <thead class="thead-dark">

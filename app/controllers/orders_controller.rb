@@ -58,13 +58,19 @@ class OrdersController < ApplicationController
   end
 
   def result
-    @products = Product.joins(:orders).distinct.select('customers.id','SUM(orders.quantity) As total_quantity').group('customers.id')
-    # c=Customer.joins(:orders).distinct.select('customers.id').group('customers.id').order('SUM(orders.quantity) desc').sum('orders.quantity')
     @top_products = 
       Order
         .group(:customer_id)
         .order('SUM(quantity) desc')
-        .select('customer_id','SUM(quantity) As total_quantity').first(3)
+        .select('customer_id','SUM(quantity) As total_quantity')
+        .first(3)
+    @top_prices = 
+      Customer
+        .joins(:query_products)
+        .group('customers.id')
+        .select('customers.first_name','SUM(query_products.price) As total_price')
+        .order('SUM(query_products.price) desc')    
+        .first(3)
     @booked_customers = 
       Order
         .group(:customer_id)
