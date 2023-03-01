@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   get '/comments/like/:id', to: 'comments#like'
   get '/comments/unlike/:id', to: 'comments#unlike'
   get '/comments/add/:id', to: 'comments#add'
-  post 'events/filter', to: 'events#filter'
+  post '/events/filter', to: 'events#filter'
+  post '/employees/checkemail', to: 'employees#checkmail'
+  get 'employees/result', to: 'employees#result'
+  get 'employees/increase', to: 'employees#increase'
+  get 'employees/decrease', to: 'employees#decrease'
   root "products#index"
   resources :products
   resources :books
@@ -18,6 +22,7 @@ Rails.application.routes.draw do
   resources :sessions
   resources :users_events
   resources :comments
+  resources :employees
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products
