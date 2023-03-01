@@ -297,29 +297,7 @@
       <% @no_of_orders.each do |a|%>
         <%= a.no_of_order %><br>
       <% end %>
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Age</th>
-            <th scope="col">Total Orders</th>
-            <th scope="col">Full Time Available</th>
-            <th scope="col">Salary</th>
-          </tr>
-        </thead>
-        <h3>order greater than 5</h3>
-        <% @employees.each do |a|%>
-          <tr>
-            <td><%= a.first_name + " " + a.last_name %></td>
-            <td><%= a.email %></td>
-            <td><%= a.age %></td>
-            <td><%= a.no_of_order %></td>
-            <td><%= a.full_time_available %></td>
-            <td><%= a.salary %></td>
-          </tr>
-        <%end%>
-      </table>
+      
       <%= link_to "Back", employees_path, class:"btn btn-primary" %>
     </div>
   </body>

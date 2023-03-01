@@ -1,37 +1,37 @@
 class EmployeesController < ApplicationController
   before_action :find_id, only: [:show, :edit, :update, :destroy]
   def index
-		@employees = Employee.all.order(:id)
-	end
-	
-	def show; end
+    @employees = Employee.all.order(:id)
+  end
+  
+  def show; end
 
-	def new
+  def new
     @employee = Employee.new
-	end
+  end
 
-	def create
+  def create
     # @employee = Employee.find_or_create_by(employee_params)
     @employee = Employee.find_or_initialize_by(employee_params)
     if(@employee.save)
       redirect_to_employee
     end
-	end
+  end
 
-	def edit; end
+  def edit; end
 
-	def update
+  def update
     @id = Employee.find(params[:id])
     if @employee.update(employee_params)
       redirect_to_employee
     else
     end
-	end
+  end
 
-	def destroy
+  def destroy
     @employee.delete
     redirect_to_employee
-	end
+  end
 
   def checkmail
     @email = Employee.find_by(email: params[:email])
@@ -50,15 +50,14 @@ class EmployeesController < ApplicationController
     @yesterdays = Employee.where('created_at < ?', Date.today)
     @below_ages = Employee.where('no_of_order = ?', 5).or(Employee.where('age < ?', 25)) 
     @descending_ages = Employee.order(age: :desc)
-    @ascending_orders = Employee.order(no_of_order: :asc)
+    @ascending_orders = Employee.order(:no_of_order)
     @salary_employees = Employee.where('salary > ?',45000) 
     @unscope_employees = Employee.where('no_of_order = ?',5).limit(2).unscope(:limit)
     @only_employees = Employee.where('no_of_order = ?',5).limit(2).only(:limit)
     @select_employees = Employee.select(:email).where(no_of_order:5).reselect(:first_name, :last_name, :email)
-    @reorder_orders = Employee.order(no_of_order: :asc).reorder(no_of_order: :desc)
-    @reverse_orders = Employee.order(salary: :asc).reverse_order
-    @no_of_orders = Employee.select("no_of_order").group("no_of_order").order("no_of_order")
-    @employees = Employee.where("no_of_order > ?",5)
+    @reorder_orders = Employee.order(:no_of_order).reorder(no_of_order: :desc)
+    @reverse_orders = Employee.order(:salary).reverse_order
+    @no_of_orders = Employee.select("no_of_order").group("no_of_order").order("no_of_order").where("no_of_order > ?", 5)
   end
 
   def find_id
