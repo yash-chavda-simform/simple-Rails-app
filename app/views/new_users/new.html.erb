@@ -1,6 +1,5 @@
 <div class="container">
   <h1>Sign up</h1>
-  <%= render 'flash' %>
   <%= form_with model: @user, url: new_users_signup_path, method: :post do |form| %>
     <div>
       <%= form.label :first_name ,class:"col-sm-2 col-form-label" %>

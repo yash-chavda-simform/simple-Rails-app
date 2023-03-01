@@ -1,8 +1,31 @@
 <br>
 <div class = "container">
-<%= form_with(url: cars_search_path, method: 'get') do |form| %>
-  <%= form.label :search, "Search For Cars" %>
-  <%= form.text_field :search %>
-  <%= form.submit "Search" %>
-<% end %>
+  <%= form_with(url: cars_search_path, method: 'get') do |form| %>
+    <%= form.label :search, "Search For Cars" %>
+    <%= form.text_field :search %>
+    <%= form.submit "Search" %>
+  <% end %>
+  <!DOCTYPE html>
+  <html lang="en">
+    <body>
+      <div class="container">
+        <h3>Car List</h3>
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Color</th>
+            </tr>
+          </thead>
+          <%@cars.each do |car|%>
+            <tr>
+              <td><%= car.name %></td>
+              <td><%= car.color %></td>
+            </tr>
+          <%end%>
+        </table>
+        <%= link_to "Back", cars_path, class:"btn btn-primary" %>
+      </div>
+    </body>
+  </html>
 </div>

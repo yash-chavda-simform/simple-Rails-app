@@ -1,12 +1,27 @@
 class CarsController < ApplicationController
   before_action :find_id, only: [:show, :edit, :update, :destroy]
   before_action :require_login
-
+  http_basic_authenticate_with name: "admin", password: "admine", digest: true
+  
   def index
     @cars = Car.all
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = Prawn::Document.new
+        pdf.text "#{cookies[:name]} booked"
+        pdf.text "Car Profile\n\n"
+        pdf.text "Name: #{@car.name}\n"
+        pdf.text "Color: #{@car.color}\n"
+        send_data pdf.render, filename: "car_profile.pdf",
+                              type: "application/pdf",
+                              disposition: "attachment"
+      end
+    end
+  end
   
   def new
     @car = Car.new
@@ -41,7 +56,11 @@ class CarsController < ApplicationController
   end
 
   def search
-    @cars = Car.all
+    if params[:search].present?
+      @cars = Car.where("name LIKE ?", "%#{params[:search]}%")
+    else
+      @cars = Car.all
+    end
  end
 
   private
