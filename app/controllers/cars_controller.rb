@@ -51,10 +51,6 @@ class CarsController < ApplicationController
     redirect_to cars_path
   end
 
-  def find_id
-    @car = Car.find(params[:id])
-  end
-
   def search
     if params[:search].present?
       @cars = Car.where("name LIKE ?", "%#{params[:search]}%")
@@ -66,5 +62,9 @@ class CarsController < ApplicationController
   private
   def car_params
     params.require(:car).permit(:name, :color)
+  end
+
+  def find_id
+    @car = Car.find(params[:id])
   end
 end

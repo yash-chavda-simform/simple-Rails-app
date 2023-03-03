@@ -19,7 +19,6 @@
   <body>
     <% flash.each do |type, msg| %>
       <div class="alert alert-<%= type %>">
-      <div id="flash-message" class="alert alert-<%= type %>">
         <%= msg %>
       </div>
     <% end %>
