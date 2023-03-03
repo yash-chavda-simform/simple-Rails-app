@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get '/comments/unlike/:id', to: 'comments#unlike'
   get '/comments/add/:id', to: 'comments#add'
   post '/events/filter', to: 'events#filter'
-  post '/employees/checkemail', to: 'employees#checkmail'
-  get 'employees/result', to: 'employees#result'
+  post '/employees/verify_email', to: 'employees#verify_email'
+  get 'employees/employees_result', to: 'employees#employees_result'
   get 'employees/increase', to: 'employees#increase'
   get 'employees/decrease', to: 'employees#decrease'
   root "products#index"

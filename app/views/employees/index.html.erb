@@ -3,7 +3,7 @@
   <body>
     <div class="container">
       <div>
-        <%= form_with(url: "employees/checkemail" ) do |form| %>
+        <%= form_with(url: "employees/verify_email" ) do |form| %>
           <div>
             <%= form.label :email %>
             <%= form.text_field :email %>
@@ -46,7 +46,7 @@
         <%= link_to "Order Increase By 1", employees_increase_path, class:"btn btn-primary" %>
         <%= link_to "Order Decrease By 1", employees_decrease_path, class:"btn btn-primary" %>
         <%= link_to "Add Employee", new_employee_path, class:"btn btn-primary" %>
-        <%= link_to "Check Result", employees_result_path, class:"btn btn-primary" %>
+        <%= link_to "Check Result", employees_employees_result_path	, class:"btn btn-primary" %>
       </div>
     </body>
   </html>
