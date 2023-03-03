@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Total Orders</th>
+            <th scope="col">Full Time Available</th>
+            <th scope="col">Salary</th>
+          </tr>
+        </thead>
+        <h3>age is between 20 to 40</h3>
+        <% Employee.employee_age(20,40).each do |a| %>
+          <tr>
+            <td><%= a.first_name + " " + a.last_name %></td>
+            <td><%= a.email %></td>
+            <td><%= a.age %></td>
+            <td><%= a.no_of_order %></td>
+            <td><%= a.full_time_available %></td>
+            <td><%= a.salary %></td>
+          </tr>
+        <%end%>
+      </table>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Total Orders</th>
+            <th scope="col">Full Time Available</th>
+            <th scope="col">Salary</th>
+          </tr>
+        </thead>
+        <h3>Full Time Available Employee</h3>
+        <% Employee.employee_full_time_availability.each do |available| %>
+          <tr>
+            <td><%= available.first_name + " " + available.last_name %></td>
+            <td><%= available.email %></td>
+            <td><%= available.age %></td>
+            <td><%= available.no_of_order %></td>
+            <td><%= available.full_time_available %></td>
+            <td><%= available.salary %></td>
+          </tr>
+        <%end%>
+      </table>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Total Orders</th>
+            <th scope="col">Full Time Available</th>
+            <th scope="col">Salary</th>
+          </tr>
+        </thead>
+        <h3>employees which have exactly 5 number of orders and age > 25</h3>
+        <% Employee.employee_above_age(5,25).each do |a| %>
+          <tr>
+            <td><%= a.first_name + " " + a.last_name %></td>
+            <td><%= a.email %></td>
+            <td><%= a.age %></td>
+            <td><%= a.no_of_order %></td>
+            <td><%= a.full_time_available %></td>
+            <td><%= a.salary %></td>
+          </tr>
+        <%end%>
+      </table>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Total Orders</th>
+            <th scope="col">Full Time Available</th>
+            <th scope="col">Salary</th>
+          </tr>
+        </thead>
+        <h3>employees which are created before today</h3>
+        <% Employee.employee_created_before_today.each do |a| %>
+          <tr>
+            <td><%= a.first_name + " " + a.last_name %></td>
+            <td><%= a.email %></td>
+            <td><%= a.age %></td>
+            <td><%= a.no_of_order %></td>
+            <td><%= a.full_time_available %></td>
+            <td><%= a.salary %></td>
+          </tr>
+        <%end%>
+      </table>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Total Orders</th>
+            <th scope="col">Full Time Available</th>
+            <th scope="col">Salary</th>
+          </tr>
+        </thead>
+        <h3>employees which have exactly 5 number of orders or age < 25</h3>
+            <% Employee.employee_below_age(5,25).each do |a| %>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+                <td><%= a.age %></td>
+                <td><%= a.no_of_order %></td>
+                <td><%= a.full_time_available %></td>
+                <td><%= a.salary %></td>
+              </tr>
+            <%end%>
+          </table>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Total Orders</th>
+                <th scope="col">Full Time Available</th>
+                <th scope="col">Salary</th>
+              </tr>
+            </thead>
+            <h3>employees in descending order by age</h3>
+            <% Employee.employee_descending_on_ages.each do |a| %>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+                <td><%= a.age %></td>
+                <td><%= a.no_of_order %></td>
+                <td><%= a.full_time_available %></td>
+                <td><%= a.salary %></td>
+              </tr>
+            <%end%>
+          </table>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Total Orders</th>
+                <th scope="col">Full Time Available</th>
+                <th scope="col">Salary</th>
+              </tr>
+            </thead>
+            <h3>employees in ascending order by number of order</h3>
+            <% Employee.employee_aescending_on_orders.each do |a|%>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+                <td><%= a.age %></td>
+                <td><%= a.no_of_order %></td>
+                <td><%= a.full_time_available %></td>
+                <td><%= a.salary %></td>
+              </tr>
+            <%end%>
+          </table>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Total Orders</th>
+                <th scope="col">Full Time Available</th>
+                <th scope="col">Salary</th>
+              </tr>
+            </thead>
+            <h3>employees having a salary > 45000</h3>
+            <% Employee.employee_salary(45000).each do |a| %>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+                <td><%= a.age %></td>
+                <td><%= a.no_of_order %></td>
+                <td><%= a.full_time_available %></td>
+                <td><%= a.salary %></td>
+              </tr>
+            <%end%>
+          </table>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Total Orders</th>
+                <th scope="col">Full Time Available</th>
+                <th scope="col">Salary</th>
+              </tr>
+            </thead>
+            <h3>unscope</h3>
+            <% Employee.unscope_employee.each do |a| %>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+                <td><%= a.age %></td>
+                <td><%= a.no_of_order %></td>
+                <td><%= a.full_time_available %></td>
+                <td><%= a.salary %></td>
+              </tr>
+            <%end%>
+          </table>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Total Orders</th>
+                <th scope="col">Full Time Available</th>
+                <th scope="col">Salary</th>
+              </tr>
+            </thead>
+            <h3>only</h3>
+            <% Employee.only_employee.each do |a| %>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+                <td><%= a.age %></td>
+                <td><%= a.no_of_order %></td>
+                <td><%= a.full_time_available %></td>
+                <td><%= a.salary %></td>
+              </tr>
+            <%end%>
+          </table>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+              </tr>
+            </thead>
+            <h3>reselect</h3>
+            <% Employee.reselect_employee.each do |a| %>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+              </tr>
+            <%end%>
+          </table>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Total Orders</th>
+                <th scope="col">Full Time Available</th>
+                <th scope="col">Salary</th>
+              </tr>
+            </thead>
+            <h3>reorder</h3>
+            <% Employee.reorder_orders_employee.each do |a| %>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+                <td><%= a.age %></td>
+                <td><%= a.no_of_order %></td>
+                <td><%= a.full_time_available %></td>
+                <td><%= a.salary %></td>
+              </tr>
+            <%end%>
+          </table>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Total Orders</th>
+                <th scope="col">Full Time Available</th>
+                <th scope="col">Salary</th>
+              </tr>
+            </thead>
+            <h3>reverse order</h3>
+            <% Employee.no_of_orders_employee.each do |a| %>
+              <tr>
+                <td><%= a.first_name + " " + a.last_name %></td>
+                <td><%= a.email %></td>
+                <td><%= a.age %></td>
+                <td><%= a.no_of_order %></td>
+                <td><%= a.full_time_available %></td>
+                <td><%= a.salary %></td>
+              </tr>
+            <%end%>
+          </table>
+          <h3>Order by no of order</h3>
+          <% Employee.order_employee.each do |a| %>
+            <%= a.no_of_order %><br>
+          <% end %>
+          <%= link_to "Back", employees_path, class:"btn btn-primary" %>
+        </div>
+      </body>
+    </html>

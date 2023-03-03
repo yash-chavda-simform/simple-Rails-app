@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :find_id, only: [:show, :edit, :update, :destroy]
+  before_action :find_employee, only: [:show, :edit, :update, :destroy]
   def index
     @employees = Employee.all.order(:id)
   end
@@ -20,11 +20,9 @@ class EmployeesController < ApplicationController
 
   def edit; end
 
-  def update
-    @id = Employee.find(params[:id])
+  def update    
     if @employee.update(employee_params)
       redirect_to_employee
-    else
     end
   end
 
@@ -33,7 +31,7 @@ class EmployeesController < ApplicationController
     redirect_to_employee
   end
 
-  def checkmail
+  def verify_email
     @email = Employee.find_by(email: params[:email])
     if @email
       flash[:success] = "Email Is Available"
@@ -43,41 +41,18 @@ class EmployeesController < ApplicationController
     redirect_to_employee 
   end
 
-  def result
-    @ages = Employee.where('age > ?',20).where('age < ?',40)
-    @availables = Employee.where('full_time_available = ?', true)
-    @above_ages = Employee.where('no_of_order = ?', 5).where('age > ?', 25) 
-    @yesterdays = Employee.where('created_at < ?', Date.today)
-    @below_ages = Employee.where('no_of_order = ?', 5).or(Employee.where('age < ?', 25)) 
-    @descending_ages = Employee.order(age: :desc)
-    @ascending_orders = Employee.order(:no_of_order)
-    @salary_employees = Employee.where('salary > ?',45000) 
-    @unscope_employees = Employee.where('no_of_order = ?',5).limit(2).unscope(:limit)
-    @only_employees = Employee.where('no_of_order = ?',5).limit(2).only(:limit)
-    @select_employees = Employee.select(:email).where(no_of_order:5).reselect(:first_name, :last_name, :email)
-    @reorder_orders = Employee.order(:no_of_order).reorder(no_of_order: :desc)
-    @reverse_orders = Employee.order(:salary).reverse_order
-    @no_of_orders = Employee.select("no_of_order").group("no_of_order").order("no_of_order").where("no_of_order > ?", 5)
-  end
-
-  def find_id
-    @employee = Employee.find(params[:id])
-  end
+  def employees_result; end
 
   def increase
     Employee.limit(10).find_in_batches(start: 1, batch_size: 4) do |employee|
-      employee.each do |e|
-        e.update(no_of_order: e.no_of_order+1)
-      end
-    end
+      Employee.where(id: employee.map(&:id)).update_all("no_of_order = no_of_order + 1")    
+    end 
     redirect_to_employee
   end
 
   def decrease
     Employee.limit(10).find_in_batches(start: 1, batch_size: 4) do |employee|
-      employee.each do |e|
-        e.update(no_of_order: e.no_of_order - 1)
-      end
+      Employee.where(id: employee.map(&:id)).update_all("no_of_order = no_of_order - 1")
     end
     redirect_to_employee
   end
@@ -89,5 +64,9 @@ class EmployeesController < ApplicationController
   private
   def employee_params
     params.require(:employee).permit(:first_name, :last_name, :email, :age, :no_of_order, :full_time_available, :salary, :lock_version)
+  end
+
+  def find_employee
+    @employee = Employee.find(params[:id])
   end
 end
