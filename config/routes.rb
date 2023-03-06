@@ -44,6 +44,19 @@ Rails.application.routes.draw do
   resources :product_routers do
     resources :order_routers
   end
+  namespace :business do
+    resources :customer_routers, only: [:index,:new,:create,:edit,:update] do
+      member do
+        get 'preview'
+        get 'delete_customer'
+      end
+      collection do
+        get 'search'
+      end
+    end
+  end
+
+
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products

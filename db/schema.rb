@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_053918) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_105021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_053918) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "business_customer_routers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "cars", force: :cascade do |t|
     t.string "name"
     t.string "color"
@@ -66,13 +73,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_053918) do
     t.bigint "event_id"
     t.index ["event_id"], name: "index_comments_on_event_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "customer_routers", force: :cascade do |t|
-    t.string "name"
-    t.integer "age"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|

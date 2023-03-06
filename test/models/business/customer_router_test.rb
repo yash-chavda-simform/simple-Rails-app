@@ -1,6 +1,6 @@
 require "test_helper"
 
-class CustomerRouterTest < ActiveSupport::TestCase
+class Business::CustomerRouterTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

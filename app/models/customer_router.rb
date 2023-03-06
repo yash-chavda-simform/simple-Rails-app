@@ -1,2 +1,0 @@
-class CustomerRouter < ApplicationRecord
-end
