@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   resources :cars
   
 
+  resources :product_routers do
+    resources :order_routers
+  end
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products

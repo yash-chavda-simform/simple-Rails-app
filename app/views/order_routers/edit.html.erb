@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h1>Update Order</h1>
+      <%= form_with(model: @order, url: product_router_order_router_path()) do |form| %>
+        <div>
+          <%= form.label :quantity,class:"col-sm-2 col-form-label" %><br>
+          <%= form.text_field :quantity, class:"form-control"%>
+        </div>
+        <br>
+        <div>
+          <%= form.submit "click",class:"btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>
