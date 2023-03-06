@@ -1,5 +1,5 @@
 class QueryProductsController < ApplicationController
-  before_action :find_id, only: [:show, :edit, :update, :destroy]
+  before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
     @products = QueryProduct.unscoped.all
@@ -37,14 +37,14 @@ class QueryProductsController < ApplicationController
   def destroy
     @product.delete
     redirect_to query_products_path
-    end
-
-  def find_id
-    @product = QueryProduct.unscoped.find(params[:id])
   end
 
   private
   def product_params
     params.require(:query_product).permit(:title, :description, :price, :capacity, :is_active, :status)
+  end
+
+  def find_product
+    @product = QueryProduct.unscoped.find(params[:id])
   end
 end

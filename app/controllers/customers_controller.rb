@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :find_id, only: [:show, :edit, :update, :destroy]
+  before_action :find_customer, only: [:show, :edit, :update, :destroy]
 
   def index
     @customers = Customer.all
@@ -33,12 +33,12 @@ class CustomersController < ApplicationController
     redirect_to customers_path
     end
 
-  def find_id
-    @customer = Customer.find(params[:id])
-  end
-
   private
   def customer_params
     params.require(:customer).permit(:first_name, :last_name, :email, :phone_no)
   end 
+
+  def find_customer
+    @customer = Customer.find(params[:id])
+  end
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'query_products/scoped', to: 'query_products#scoped'
   get 'users/signup', to: 'users#new'
   get 'users/signup', to: 'users#new'
-  get 'orders/result', to: 'orders#result'
+  get 'orders/result', to: 'orders#query_result'
   get 'sessions/logout', to: 'sessions#logout'
   get 'sessions/profile', to: 'sessions#profile'
   get '/comments/like/:id', to: 'comments#like'

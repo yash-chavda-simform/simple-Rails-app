@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
-  before_action :find_id, only: [:show, :edit, :update, :destroy]
+  before_action :find_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    fetch_data
+    set_product_customers
     @filters = Order.select(:status).distinct
 
     if params[:product_id].present?
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   
   def new
     @order = Order.new
-    fetch_data
+    set_product_customers
   end
   
   def create
@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
   end
 
   def edit 
-    fetch_data
+    set_product_customers
   end
 
   def update
@@ -46,49 +46,21 @@ class OrdersController < ApplicationController
   def destroy
     @order.delete
     redirect_to orders_path
-    end
-
-  def find_id
-    @order = Order.find(params[:id])
   end
 
-  def fetch_data
-    @products = QueryProduct.unscoped.all
-    @customers = Customer.all
-  end
-
-  def result
-    @top_products = 
-      Order
-        .group(:customer_id)
-        .order('SUM(quantity) desc')
-        .select('customer_id','SUM(quantity) As total_quantity')
-        .first(3)
-    @top_prices = 
-      Customer
-        .joins(:query_products)
-        .group('customers.id')
-        .select('customers.first_name','SUM(query_products.price) As total_price')
-        .order('SUM(query_products.price) desc')    
-        .first(3)
-    @booked_customers = 
-      Order
-        .group(:customer_id)
-        .order('COUNT(status) desc')
-        .select('customer_id','COUNT(customer_id) As total_booked')
-        .where(status:"booked")
-        .first(5)
-    @cancelled_customers = 
-      Order
-        .group(:customer_id)
-        .order('COUNT(status) desc')
-        .select('customer_id','COUNT(customer_id) As total_cancelled')
-        .where(status:"cancelled")
-        .first(5)
-  end
+  def query_result; end
 
   private
   def order_params
     params.require(:order).permit(:quantity, :status, :query_product_id, :customer_id)
-  end 
+  end
+
+  def find_order
+    @order = Order.find(params[:id])
+  end
+
+  def set_product_customers
+    @products = QueryProduct.unscoped.all
+    @customers = Customer.all
+  end
 end
