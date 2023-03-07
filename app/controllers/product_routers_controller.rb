@@ -15,6 +15,8 @@ class ProductRoutersController < ApplicationController
     @product = ProductRouter.new(product_params)
     if @product.save
       product_index_path
+    else
+      render :new
     end
   end
 
@@ -23,6 +25,8 @@ class ProductRoutersController < ApplicationController
   def update
     if @product.update(product_params)
       product_index_path
+    else
+      render :edit
     end 
   end
 

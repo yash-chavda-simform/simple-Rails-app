@@ -1,17 +1,19 @@
 class Business::CustomerRoutersController < ApplicationController
   before_action :find_customer, only: [ :edit, :update, :delete_customer, :preview]
   def index
-    @customers = CustomerRouter.all
-  end
+    @customers = Business::CustomerRouter.all
+  end 
 
   def new
-    @customer = CustomerRouter.new
+    @customer = Business::CustomerRouter.new
   end
   
   def create
-    @customer = CustomerRouter.new(customer_params)
+    @customer = Business::CustomerRouter.new(customer_params)
     if @customer.save
-      redirect_to business_customer_routers_path	
+      root_path
+    else
+      render :new
     end
   end
 
@@ -19,7 +21,9 @@ class Business::CustomerRoutersController < ApplicationController
 
   def update
     if @customer.update(customer_params)
-      redirect_to business_customer_routers_path	
+      root_path	
+    else
+      render :edit
     end 
   end
 
@@ -27,23 +31,27 @@ class Business::CustomerRoutersController < ApplicationController
   
   def delete_customer
     @customer.destroy
-    redirect_to business_customer_routers_path
+    root_path
   end
   
   def search
     if params[:search].present?
-      @customers = CustomerRouter.where("name LIKE ?", "%#{params[:search]}%")
+      @customers = Business::CustomerRouter.where("name LIKE ?", "%#{params[:search]}%")
     else
-      @customers = CustomerRouter.all
+      @customers = Business::CustomerRouter.all
     end
   end
 
   private
   def customer_params
-    params.require(:customer_router).permit(:name, :email)
+    params.require(:business_customer_router).permit(:name, :email)
   end
 
   def find_customer
-    @customer = CustomerRouter.find(params[:id])
+    @customer = Business::CustomerRouter.find(params[:id])
+  end
+
+  def root_path
+    redirect_to business_customer_routers_path
   end
 end

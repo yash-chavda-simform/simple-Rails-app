@@ -56,6 +56,9 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resource :v1
+  end
 
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"

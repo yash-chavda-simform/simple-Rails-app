@@ -16,7 +16,7 @@ class OrderRoutersController < ApplicationController
   def create
     @order = @product.order_routers.build(order_params)
     if @order.save
-      redirect_to product_router_order_routers_path
+      root_path
     else
       render :new
     end
@@ -27,7 +27,7 @@ class OrderRoutersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      redirect_to product_router_order_routers_path
+      root_path
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class OrderRoutersController < ApplicationController
 
   def destroy
     @order.destroy
-    redirect_to product_router_order_routers_path
+    root_path
   end
 
   private
@@ -49,5 +49,9 @@ class OrderRoutersController < ApplicationController
 
   def set_order
     @order = @product.order_routers.find(params[:id])
+  end
+
+  def root_path
+    redirect_to product_router_order_routers_path
   end
 end
