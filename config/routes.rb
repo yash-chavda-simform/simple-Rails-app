@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :user_renderings
   get 'demo/index'
   get 'query_products/scoped', to: 'query_products#scoped'
   get 'users/signup', to: 'users#new'
@@ -24,6 +25,8 @@ Rails.application.routes.draw do
   get 'new_users/login', to: 'new_users#login'
   post 'new_users/login', to: 'new_users#authenticate'
   root "products#index"
+  get 'order_renderings', to: 'order_renderings#index'
+  root "product_renderings#index"
   resources :products
   resources :books
   resources :authors
@@ -31,7 +34,7 @@ Rails.application.routes.draw do
   resources :students
   resources :events
   resources :users
-  resources :sessions
+  # resources :sessions
   resources :users_events
   resources :comments
   resources :employees
@@ -60,6 +63,7 @@ Rails.application.routes.draw do
     resource :v1
   end
 
+  resources :product_renderings
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products
