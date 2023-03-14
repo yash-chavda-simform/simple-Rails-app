@@ -23,16 +23,16 @@
         <td><%= e.mobile_number %></td>
         <td><%= e.birth_date %></td>
         <td><%= e.hobbies %>
-        <td><%= image_tag(e.file.url, alt: 'Image', style: "width: 50px; height:55px; display:block") if e.file? %></td>
-        <td><%= link_to 'Details' , e %></td>
-        <td><%= link_to "Edit", edit_employee_action_path(e), class:"btn btn-primary" %></td>
-        <td><%= link_to "Delete", employee_action_path(e), data: {
+          <td><%= image_tag(e.file.url, alt: 'Image', style: "width: 50px; height:55px; display:block") if e.file? %></td>
+          <td><%= link_to 'Details' , e %></td>
+          <td><%= link_to "Edit", edit_employee_action_path(e), class:"btn btn-primary" %></td>
+          <td><%= link_to "Delete", employee_action_path(e), data: {
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure?"
                       }, class:"btn btn-danger" %></td>
-      </tr>
-    <% end %>
-  </table>
-  <%= link_to "Add Employee", new_employee_action_path, class:"btn btn-primary" %>
-  <%= link_to "Search", employee_search_path, class:"btn btn-primary" %>
-</div>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to "Add Employee", new_employee_action_path, class:"btn btn-primary" %>
+    <%= link_to "Search", employee_search_path, class:"btn btn-primary" %>
+  </div>

@@ -1,8 +1,8 @@
 <div class="container">
   <%= form_with url:employee_search_path, method: :get do |form| %>
-  <%= form.label :query, "Search For:" %>
-  <%= form.text_field :query %>
-  <%= form.submit "Search" %>
+    <%= form.label :query, "Search For:" %>
+    <%= form.text_field :query %>
+    <%= form.submit "Search" %>
   <% end %>
   <h3>Employee List</h3>
   <table class="table">
@@ -26,7 +26,7 @@
         <td><%= e.mobile_number %></td>
         <td><%= e.birth_date %></td>
         <td><%= e.hobbies %></td>
-    <% end %>
-  </table>
-  <%= link_to "Back", employee_actions_path, class:"btn btn-primary" %>
-</div>
+      <% end %>
+    </table>
+    <%= link_to "Back", employee_actions_path, class:"btn btn-primary" %>
+  </div>

@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_101023) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "address_actions", force: :cascade do |t|
+    t.string "house_name"
+    t.string "street_name"
+    t.string "road"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "employee_action_id", null: false
+    t.index ["employee_action_id"], name: "index_address_actions_on_employee_action_id"
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.text "content"
@@ -80,6 +90,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
     t.string "last_name"
     t.string "email"
     t.string "phone_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employee_actions", force: :cascade do |t|
+    t.string "employee_name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "gender"
+    t.string "address"
+    t.string "mobile_number"
+    t.date "birth_date"
+    t.boolean "hobbies"
+    t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -245,6 +269,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
     t.index ["user_id"], name: "index_users_events_on_user_id"
   end
 
+  add_foreign_key "address_actions", "employee_actions"
   add_foreign_key "books", "authors"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
