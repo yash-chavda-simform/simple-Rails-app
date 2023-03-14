@@ -1,0 +1,55 @@
+<%= form_with model: @employee do |form| %>
+  <div>
+    <%= form.label :employee_name,class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :employee_name, class:"form-control" %>
+  </div>
+  <div>
+    <%= form.label :email, class:"col-sm-2 col-form-label" %>
+    <%= form.email_field :email, class:"form-control" %>
+  </div>
+  <div>
+    <%= form.label :password, class:"col-sm-2 col-form-label" %>
+    <%= form.password_field :password, class:"form-control" %>
+  </div>
+  <br>
+  <div>
+    <%= form.radio_button :gender,"male" %>
+    <%= form.label :male,"Male" %>
+    <%= form.radio_button :gender,"female" %>
+    <%= form.label :female,"Female" %><br>
+  </div>
+  <div>
+  Addresses:
+  <br>
+    <%= form.fields_for :address_actions do |addresses_form| %>
+      <%= addresses_form.label :house_name, class:"col-sm-2 col-form-label" %>
+      <%= addresses_form.text_field :house_name, class:"form-control" %>
+      <%= addresses_form.label :street_name, class:"col-sm-2 col-form-label" %>
+      <%= addresses_form.text_field :street_name, class:"form-control" %>
+      <%= addresses_form.label :road, class:"col-sm-2 col-form-label" %>
+      <%= addresses_form.text_field :road, class:"form-control" %>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :mobile_number, class:"col-sm-2 col-form-label" %>
+    <%= form.number_field :mobile_number, class:"form-control" %>
+  </div>
+  <div>
+    <%= form.label :birth_date, class:"col-sm-2 col-form-label" %>
+    <%= form.date_field :birth_date, class:"form-control" %>
+  </div>
+  <br>
+  <div>
+    <%= form.check_box :hobbies %>
+    <%= form.label :hobbies, "Any Technical Hobby" %>
+  </div>
+  <br>
+  <div>
+    <%= form.label :file, class:"col-sm-2 col-form-label" %><br>
+    <%= form.file_field :file, class:"form-control" %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit "Click",class:"btn btn-primary" %>
+  </div>
+<% end %>

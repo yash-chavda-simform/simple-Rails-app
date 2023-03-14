@@ -1,0 +1,32 @@
+<div class="container">
+  <%= form_with url:employee_search_path, method: :get do |form| %>
+  <%= form.label :query, "Search For:" %>
+  <%= form.text_field :query %>
+  <%= form.submit "Search" %>
+  <% end %>
+  <h3>Employee List</h3>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Address</th>
+        <th scope="col">Mobile No</th>
+        <th scope="col">Birthdate</th>
+        <th scope="col">Hobbies</th>
+      </tr>
+    </thead>
+    <% @employees.each do |e| %>
+      <tr>
+        <td><%= e.employee_name %></td>
+        <td><%= e.email %></td>
+        <td><%= e.gender %></td>
+        <td><%= e.address %></td>
+        <td><%= e.mobile_number %></td>
+        <td><%= e.birth_date %></td>
+        <td><%= e.hobbies %></td>
+    <% end %>
+  </table>
+  <%= link_to "Back", employee_actions_path, class:"btn btn-primary" %>
+</div>
