@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h3>Customer List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone No.</th>
+            <th scope="col">Details</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.full_name %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.phone_no %></td>
+            <td><%= link_to 'Details' , customer %>
+            </td>
+            <td><%= link_to "Edit", edit_customer_path(customer), class:"btn btn-primary" %></td>
+            <td><%= link_to "Delete", customer_path(customer), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+          </tr>
+        <%end%>
+      </table>
+      <%= link_to "Add Customer", new_customer_path, class:"btn btn-primary" %>
+    </div>
+  </body>
+</html>

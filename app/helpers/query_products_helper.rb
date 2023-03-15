@@ -1,0 +1,2 @@
+module QueryProductsHelper
+end

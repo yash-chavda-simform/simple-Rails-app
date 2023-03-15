@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <br>
+    <div class="container">
+      <%= link_to "Go To Order", orders_path, class:"btn btn-primary" %>
+      <%= link_to "Go To Product", query_products_path, class:"btn btn-primary" %>
+      <%= link_to "Go To Customer", customers_path, class:"btn btn-primary" %>
+      <h3>most sales product by quantity</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Total Quantity</th>
+          </tr>
+        </thead>
+        <% Order.most_sales_product_by_quantity.each do |product| %>
+          <tr>
+            <td><%= product.customer.full_name %></td>
+            <td><%= product.total_quantity %></td>
+          </tr>
+        <%end%>
+      </table>
+      <h3>most sales product by price</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Total Price</th>
+          </tr>
+        </thead>
+    
+        <% Customer.most_sales_product_by_price.each do |price| %>
+          <tr>
+            <td><%= price.full_name %></td>
+            <td><%= price.total_price %></td>
+          </tr>
+        <%end%>
+      </table>
+      <h3>most booked order of product</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Total Count</th>
+          </tr>
+        </thead>
+        <% Order.status_booked.each do |booked| %>
+          <tr>
+            <td><%= booked.customer.full_name %></td>
+            <td><%= booked.total_booked %></td>
+          </tr>
+        <%end%>
+      </table>
+    </table>
+    <h3>most cancelled order of product</h3>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Total Count</th>
+        </tr>
+      </thead>
+      <% Order.status_cancelled.each do |cancelled| %>
+        <tr>
+          <td><%= cancelled.customer.full_name %></td>
+          <td><%= cancelled.total_cancelled %></td>
+        </tr>
+      <%end%>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   get 'demo/index'
+  get 'query_products/scoped', to: 'query_products#scoped'
   get 'users/signup', to: 'users#new'
-  get 'sessions/logout', to: "sessions#logout"
-  get 'sessions/profile', to: "sessions#profile"
+  get 'users/signup', to: 'users#new'
+  get 'orders/result', to: 'orders#query_result'
+  get 'sessions/logout', to: 'sessions#logout'
+  get 'sessions/profile', to: 'sessions#profile'
   get '/comments/like/:id', to: 'comments#like'
   get '/comments/unlike/:id', to: 'comments#unlike'
   get '/comments/add/:id', to: 'comments#add'
@@ -23,6 +26,9 @@ Rails.application.routes.draw do
   resources :users_events
   resources :comments
   resources :employees
+  resources :customers
+  resources :orders
+  resources :query_products
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products
