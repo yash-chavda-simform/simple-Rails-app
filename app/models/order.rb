@@ -15,7 +15,7 @@ class Order < ApplicationRecord
     if params[:filter].present?  
       includes(:customer,:query_product).where(status:params[:filter])
     elsif params[:product_name].present?
-      @product = QueryProduct.find_by(title: params[:product_name].downcase)
+      @product = QueryProduct.where("title LIKE '%#{params[:product_name].downcase}%'").first
       where(query_product_id:@product.id)
     else
       includes(:customer,:query_product) 
