@@ -2,11 +2,11 @@ class QueryProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = QueryProduct.unscoped.all
+    @products = QueryProduct.all
   end
 
   def scoped
-    @products = QueryProduct.all
+    @products = QueryProduct.unscoped.all
   end
 
   def show 

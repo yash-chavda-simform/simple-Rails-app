@@ -10,7 +10,7 @@
         <% end %><br>
         <%= form_with url: orders_path, method: :get do |form| %>
           <%= form.label :filter, "Order status" %>
-          <%= form.collection_select :filter, @filters, :status, :status %>
+          <%= form.collection_select :filter, Order.filter_options, :status, :status %>
           <%= form.submit "Filter", class:"btn btn-primary" %>
         <% end %>
         <%= form_with url: orders_path, method: :get do |form| %>
@@ -34,7 +34,7 @@
         <% @orders.each do |order| %>
           <tr>
             <td><%= order.quantity %></td>
-            <td><%= order.quantity * order.query_product.price %></td>
+            <td><%= order.total_price %></td>
             <td><%= order.query_product.title %></td>
             <td><%= order.status %></td>
             <td><%= order.customer.first_name %></td>

@@ -2,19 +2,7 @@ class OrdersController < ApplicationController
   before_action :find_order, only: [:show, :edit, :update, :destroy]
 
   def index
-    set_product_customers
-    @filters = Order.select(:status).distinct
-
-    if params[:product_id].present?
-      @orders = Order.includes(:customer).where(query_product_id:params[:product_id])  
-    elsif params[:filter].present?
-      @orders = Order.includes(:customer).where(status:params[:filter])
-    elsif params[:product_name].present?
-      @product = QueryProduct.find_by(title: params[:product_name].downcase)
-      @orders = Order.where(query_product_id:@product.id)
-    else
-      @orders = Order.includes(:customer) 
-    end
+    @orders = Order.get_orders(params)
   end
 
   def show; end
@@ -60,7 +48,7 @@ class OrdersController < ApplicationController
   end
 
   def set_product_customers
-    @products = QueryProduct.unscoped.all
+    @products = QueryProduct.all
     @customers = Customer.all
   end
 end

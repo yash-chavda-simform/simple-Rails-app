@@ -2,8 +2,24 @@ class Order < ApplicationRecord
   enum status: { booked: 0, cancelled: 1 }
   belongs_to :query_product
   belongs_to :customer
-  def query_product
-    QueryProduct.unscoped { super }
+  
+  def total_price
+    quantity * query_product.price
+  end
+
+  def self.filter_options
+    select(:status).distinct
+  end
+
+  def self.get_orders(params)
+    if params[:filter].present?  
+      includes(:customer,:query_product).where(status:params[:filter])
+    elsif params[:product_name].present?
+      @product = QueryProduct.find_by(title: params[:product_name].downcase)
+      where(query_product_id:@product.id)
+    else
+      includes(:customer,:query_product) 
+    end
   end
 
   def self.most_sales_product_by_quantity

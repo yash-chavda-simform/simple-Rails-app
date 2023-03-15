@@ -16,7 +16,7 @@
         </thead>
         <% Order.most_sales_product_by_quantity.each do |product| %>
           <tr>
-            <td><%= product.customer.first_name %></td>
+            <td><%= product.customer.full_name %></td>
             <td><%= product.total_quantity %></td>
           </tr>
         <%end%>
@@ -30,12 +30,9 @@
           </tr>
         </thead>
     
-        <% Customer.joins(:query_products).group('customers.id')
-            .select('customers.first_name','SUM(query_products.price) As total_price')
-            .order('SUM(query_products.price) desc')
-            .first(3).each do |price| %>
+        <% Customer.most_sales_product_by_price.each do |price| %>
           <tr>
-            <td><%= price.first_name %></td>
+            <td><%= price.full_name %></td>
             <td><%= price.total_price %></td>
           </tr>
         <%end%>
@@ -50,7 +47,7 @@
         </thead>
         <% Order.status_booked.each do |booked| %>
           <tr>
-            <td><%= booked.customer.first_name + " " + booked.customer.last_name %></td>
+            <td><%= booked.customer.full_name %></td>
             <td><%= booked.total_booked %></td>
           </tr>
         <%end%>
@@ -66,7 +63,7 @@
       </thead>
       <% Order.status_cancelled.each do |cancelled| %>
         <tr>
-          <td><%= cancelled.customer.first_name + " " + cancelled.customer.last_name %></td>
+          <td><%= cancelled.customer.full_name %></td>
           <td><%= cancelled.total_cancelled %></td>
         </tr>
       <%end%>
