@@ -14,6 +14,15 @@ Rails.application.routes.draw do
   get 'employees/employees_result', to: 'employees#employees_result'
   get 'employees/increase', to: 'employees#increase'
   get 'employees/decrease', to: 'employees#decrease'
+  post 'events/filter', to: 'events#filter'
+  get 'cars/search', to: 'cars#search'
+  #login and signup action controller
+  get 'new_users', to: 'new_users#index'
+  get 'new_users/logout', to: 'new_users#logout'
+  get 'new_users/signup', to: 'new_users#new'
+  post 'new_users/signup', to: 'new_users#create'
+  get 'new_users/login', to: 'new_users#login'
+  post 'new_users/login', to: 'new_users#authenticate'
   root "products#index"
   resources :products
   resources :books
@@ -29,6 +38,9 @@ Rails.application.routes.draw do
   resources :customers
   resources :orders
   resources :query_products
+  resources :cars
+  
+
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products
