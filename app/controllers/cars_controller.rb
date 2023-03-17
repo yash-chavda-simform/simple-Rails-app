@@ -1,7 +1,7 @@
 class CarsController < ApplicationController
-  before_action :find_id, only: [:show, :edit, :update, :destroy]
+  before_action :find_car, only: [:show, :edit, :update, :destroy]
   before_action :require_login
-  http_basic_authenticate_with name: "admin", password: "admine", digest: true
+  http_basic_authenticate_with name: "admin", password: "admin", digest: true
   
   def index
     @cars = Car.all
@@ -12,10 +12,7 @@ class CarsController < ApplicationController
       format.html
       format.pdf do
         pdf = Prawn::Document.new
-        pdf.text "#{cookies[:name]} booked"
-        pdf.text "Car Profile\n\n"
-        pdf.text "Name: #{@car.name}\n"
-        pdf.text "Color: #{@car.color}\n"
+        pdf.text "#{cookies[:name]} has booked the car\n Car Details\n\n Car Name: #{@car.name}\n Car Color: #{@car.color}\n"
         send_data pdf.render, filename: "car_profile.pdf",
                               type: "application/pdf",
                               disposition: "attachment"
@@ -64,7 +61,7 @@ class CarsController < ApplicationController
     params.require(:car).permit(:name, :color)
   end
 
-  def find_id
+  def find_car
     @car = Car.find(params[:id])
   end
 end

@@ -19,14 +19,13 @@
             <td><%= car.color %></td>
             <td><%= link_to 'Details', car %>
             </td>
-            <%# <button class="btn btn-primary">Button</button> %>
-            <td><%= link_to "Edit", edit_car_path(car), class:"btn btn-primary"%></td>
+            <td><%= link_to "Edit", edit_car_path(car), class:"btn btn-primary" %></td>
             <td><%= link_to "Delete", car_path(car), data: {
                         turbo_method: :delete,
                         turbo_confirm: "Are you sure?"
                       }, class:"btn btn-danger" %></td>
           </tr>
-        <%end%>
+        <% end %>
       </table>
       <%= link_to "Add Car", new_car_path, class:"btn btn-primary" %>
       <%= link_to "Search", cars_search_path, class:"btn btn-primary" %>

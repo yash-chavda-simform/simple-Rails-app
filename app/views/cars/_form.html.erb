@@ -1,7 +1,7 @@
 <%= form_with model: @car do |form| %>
   <div>
     <%= form.label :name,class:"col-sm-2 col-form-label" %><br>
-    <%= form.text_field :name, class:"form-control"%>
+    <%= form.text_field :name, class:"form-control" %>
   </div>
   <div>
     <%= form.label :color, class:"col-sm-2 col-form-label" %><br>
@@ -9,6 +9,6 @@
   </div>
   <br>
   <div>
-    <%= form.submit "click",class:"btn btn-primary" %>
+    <%= form.submit class:"btn btn-primary" %>
   </div>
 <% end %>
