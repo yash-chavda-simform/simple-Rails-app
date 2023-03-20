@@ -198,6 +198,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
     t.index ["query_product_id"], name: "index_orders_on_query_product_id"
   end
 
+  create_table "post_javascripts", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "product_renderings", force: :cascade do |t|
     t.string "name"
     t.decimal "price"

@@ -52,6 +52,9 @@ gem "bootsnap", require: false
 gem 'pry'
 #pdf
 gem 'prawn'
+
+#to show image
+gem 'carrierwave', '~> 1.0'
 #bootstrap
 # Use Sass to process CSS
 # gem "sassc-rails"
