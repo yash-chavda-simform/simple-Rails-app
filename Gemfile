@@ -50,6 +50,11 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 #debugger
 gem 'pry'
+#bootstrap
+gem 'bootstrap'
+#to show image
+gem 'carrierwave', '~> 1.0'
+
 #pdf
 gem 'prawn'
 
