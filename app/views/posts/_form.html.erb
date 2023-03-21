@@ -1,0 +1,8 @@
+<%= form_with model: @post do |form| %>
+  <%= form.label :title, class:"col-sm-2 col-form-label" %>
+  <%= form.text_field :title, class:"form-control" %>
+  <%= form.label :image, class:"col-sm-2 col-form-label" %>
+  <%= form.file_field :image, class:"form-control" %><br>
+  <%= form.submit class:"btn btn-primary" %>
+  <%= link_to "Cancel", posts_yourpost_path, class: "btn btn-danger" %><br><br>
+<% end %>

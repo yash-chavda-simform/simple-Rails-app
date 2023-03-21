@@ -1,0 +1,13 @@
+<div class="container">
+  <h3>Your Post</h3>
+  <%= turbo_frame_tag "posts" do %>
+    <%= render @posts %>
+  <%end%>
+  <br>
+  <br>
+  <%= link_to "Add Post", new_post_path, data: { turbo_frame: dom_id(Post.new) }, class:"btn btn-primary" %>
+  <%= turbo_frame_tag Post.new do %>
+  <% end %>
+  <%= link_to "Back", posts_path, class:"btn btn-primary" %>
+  <%= link_to "Logout", rails_users_logout_path, class:"btn btn-primary" %>
+</div>

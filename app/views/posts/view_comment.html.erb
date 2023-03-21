@@ -1,0 +1,18 @@
+<div class="container">
+  <h3>ALL Comments</h3>
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Comments</th>
+        <th scope="col">Comment By</th>
+      </tr>
+    </thead>
+    <% @comments.each do |c|%>
+      <tr>
+        <td><%= c.comment %></td>
+        <td><%= " - " + c.rails_user.first_name %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "Back", posts_path, class:"btn btn-primary" %>
+</div>
