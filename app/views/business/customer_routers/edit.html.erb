@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <body>
-    <div class="container">
-      <%= form_with(model: @customer,url: business_customer_router_path()) do |form| %>
-        <div>
-          <%= form.label :name,class:"col-sm-2 col-form-label" %><br>
-          <%= form.text_field :name, class:"form-control"%>
-        </div>
-        <div>
-          <%= form.label :email, class:"col-sm-2 col-form-label" %><br>
-          <%= form.text_field :email, class:"form-control" %>
-        </div>
-        <br>
-        <div>
-          <%= form.submit "click",class:"btn btn-primary" %>
-        </div>
-      <% end %>
-    </div>
-  </body>
-</html>
+<div class="container">
+  <h1>Edit Customer</h1>
+  <%= render partial: "form", locals: { target: business_customer_router_path } %>
+</div>

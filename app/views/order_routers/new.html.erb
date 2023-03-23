@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <body>
-    <div class="container">
-      <%= form_with(model: @order, url: product_router_order_routers_path()) do |form| %>
-        <div>
-          <%= form.label :quantity,class:"col-sm-2 col-form-label" %><br>
-          <%= form.text_field :quantity, class:"form-control"%>
-        </div>
-        <br>
-        <div>
-          <%= form.submit "click",class:"btn btn-primary" %>
-        </div>
-      <% end %>
-    </div>
-  </body>
-</html>
+<div class="container">
+  <h1>New Order</h1>
+  <%= render partial: 'form', locals: { target: product_router_order_routers_path() } %>
+</div>
