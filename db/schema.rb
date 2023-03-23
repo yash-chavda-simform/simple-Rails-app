@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_28_085843) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_06_105021) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_085843) do
     t.datetime "updated_at", null: false
     t.bigint "author_id", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "business_customer_routers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "cars", force: :cascade do |t|
@@ -140,6 +147,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_085843) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_routers", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "product_router_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_router_id"], name: "index_order_routers_on_product_router_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "quantity"
     t.integer "status"
@@ -149,6 +164,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_085843) do
     t.bigint "customer_id", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["query_product_id"], name: "index_orders_on_query_product_id"
+  end
+
+  create_table "product_routers", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "products", force: :cascade do |t|
@@ -202,6 +224,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_28_085843) do
   add_foreign_key "events", "users", column: "organizer_id"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
+  add_foreign_key "order_routers", "product_routers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "query_products"
   add_foreign_key "users_events", "events"

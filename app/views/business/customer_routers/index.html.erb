@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="container">
+      <h3>Customer List</h3>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Preview</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.name %></td>
+            <td><%= customer.email %></td>
+            <td><%= link_to "Preview", preview_business_customer_router_path(customer), class:"btn btn-info" %></td>
+            <td><%= link_to "Edit", edit_business_customer_router_path(customer), class:"btn btn-primary" %></td>
+            <td><%= link_to "Delete", delete_customer_business_customer_router_path(customer), class:"btn btn-danger" %></td>
+          </tr>
+        <%end%>
+      </table>
+      <%= link_to "Add Customer", new_business_customer_router_path, class:"btn btn-primary" %>
+      <%= link_to "Search", search_business_customer_routers_path, class:"btn btn-primary" %>
+    </div>
+  </body>
+</html>

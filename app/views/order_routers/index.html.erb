@@ -1,0 +1,30 @@
+<div class="container">
+  <h3>Order List</h3>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total Price</th>
+        <th scope="col">Details</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.quantity %></td>
+        <td><%= order.product_router.price * order.quantity %></td>
+        <td><%= link_to 'Details',product_router_order_router_path(@product, order) %>
+        </td>
+        <%# <button class="btn btn-primary">Button</button> %>
+        <td><%= link_to "Edit", edit_product_router_order_router_path(@product, order), class:"btn btn-primary"%></td>
+        <td><%= link_to "Delete", product_router_order_router_path(@product, order), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+      </tr>
+    <%end%>
+  </table>
+  <%= link_to "Add Order", new_product_router_order_router_path(@product), class:"btn btn-primary" %>
+  <%= link_to "Back", product_routers_path, class:"btn btn-primary" %>
+</div>
