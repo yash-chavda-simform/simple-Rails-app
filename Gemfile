@@ -30,7 +30,6 @@ gem "jbuilder"
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
 gem "devise"
-
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -58,11 +57,10 @@ gem 'bootstrap'
 gem 'prawn'
 
 #to show image
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave'
 #bootstrap
 # Use Sass to process CSS
 # gem "sassc-rails"
-
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
