@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   post 'new_users/signup', to: 'new_users#create'
   get 'new_users/login', to: 'new_users#login'
   post 'new_users/login', to: 'new_users#authenticate'
-  root "products#index"
   get 'order_renderings', to: 'order_renderings#index'
   root "product_renderings#index"
   resources :products

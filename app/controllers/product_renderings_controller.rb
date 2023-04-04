@@ -3,9 +3,9 @@ class ProductRenderingsController < ApplicationController
   layout :set_layout
   before_action :check_access, except: [:index]
   before_action :find_product, only: [:show, :edit, :update, :destroy]
+  
   def index
     @products = ProductRendering.all
-    @permission = check_user ? "admin" : "merchant"
   end
 
   def show; end

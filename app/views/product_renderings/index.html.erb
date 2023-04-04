@@ -5,7 +5,7 @@
       <tr>
         <th scope="col">Name</th>
         <th scope="col">Price</th>
-        <% if @permission.eql?("admin") %>
+        <% if current_user_rendering.role.eql?("admin") %>
           <th scope="col">Details</th>
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
@@ -16,7 +16,7 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= product.price %></td>
-        <% if @permission.eql?("admin") %>
+        <% if current_user_rendering.role.eql?("admin") %>
           <td><%= link_to 'Details' , product %></td>
           <td><%= link_to "Edit", edit_product_rendering_path(product), class:"btn btn-primary"%></td>
           <td><%= link_to "Delete", product_rendering_path(product), data: {
@@ -27,7 +27,7 @@
       </tr>
     <%end%>
   </table>
-  <% if @permission.eql?("admin") %>
+  <% if current_user_rendering.role.eql?("admin") %>
     <%= link_to "Add Product", new_product_rendering_path, class:"btn btn-primary" %>
   <% end %>
   <%= link_to "Order List", order_renderings_path, class:"btn btn-primary" %>
