@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_105021) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -147,6 +147,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_105021) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_renderings", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "product_rendering_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_rendering_id"], name: "index_order_renderings_on_product_rendering_id"
+  end
+
   create_table "order_routers", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "product_router_id", null: false
@@ -164,6 +172,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_105021) do
     t.bigint "customer_id", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["query_product_id"], name: "index_orders_on_query_product_id"
+  end
+
+  create_table "product_renderings", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "product_routers", force: :cascade do |t|
@@ -201,6 +216,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_105021) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_renderings", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "role"
+    t.index ["email"], name: "index_user_renderings_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_user_renderings_on_reset_password_token", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", null: false
@@ -224,6 +252,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_06_105021) do
   add_foreign_key "events", "users", column: "organizer_id"
   add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
+  add_foreign_key "order_renderings", "product_renderings"
   add_foreign_key "order_routers", "product_routers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "query_products"
