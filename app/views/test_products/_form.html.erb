@@ -1,0 +1,21 @@
+<%= form_with model: @product do |form| %>
+  <div>
+    <%= form.label :product_name,class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :product_name , class:"form-control" %>
+  </div>
+  <div>
+    <%= form.label :description, class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :description , class:"form-control" %>
+  </div>
+  <div>
+    <%= form.label :price, class:"col-sm-2 col-form-label" %>
+    <%= form.text_field :price , class:"form-control" %>
+  </div>
+  <div>
+    <%= form.hidden_field :test_user_id, value: current_test_user.id %>
+  </div>
+  <br>
+  <div>
+    <%= form.submit class:"btn btn-primary" %>
+  </div>
+<% end %>
