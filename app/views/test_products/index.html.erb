@@ -27,7 +27,7 @@
     <% end %>
   </table>
   <%= link_to "Add Product", new_test_product_path, class:"btn btn-primary" %>
-  <%= link_to "Logout", destroy_test_user_session_path, data: {
+  <%= link_to "Logout", destroy_user_rendering_session_path, data: {
                         turbo_method: :delete
                       }, class:"btn btn-primary" %>
 </div>

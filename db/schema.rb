@@ -14,16 +14,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_101428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "address_actions", force: :cascade do |t|
-    t.string "house_name"
-    t.string "street_name"
-    t.string "road"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "employee_action_id", null: false
-    t.index ["employee_action_id"], name: "index_address_actions_on_employee_action_id"
-  end
-
   create_table "addresses", force: :cascade do |t|
     t.text "content"
     t.integer "addressable_id"
@@ -90,20 +80,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_101428) do
     t.string "last_name"
     t.string "email"
     t.string "phone_no"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "employee_actions", force: :cascade do |t|
-    t.string "employee_name"
-    t.string "email"
-    t.string "password_digest"
-    t.string "gender"
-    t.string "address"
-    t.string "mobile_number"
-    t.date "birth_date"
-    t.boolean "hobbies"
-    t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -271,15 +247,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_101428) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rails_users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "students", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -337,7 +304,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_101428) do
     t.index ["user_id"], name: "index_users_events_on_user_id"
   end
 
-  add_foreign_key "address_actions", "employee_actions"
   add_foreign_key "books", "authors"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"

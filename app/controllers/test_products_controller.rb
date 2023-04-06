@@ -1,6 +1,6 @@
 class TestProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_test_user!
+  before_action :authenticate_user_rendering!
   
   def index
     @products = TestProduct.all
@@ -13,11 +13,11 @@ class TestProductsController < ApplicationController
   end
   
   def create
-    @product = TestProduct.new(product_params)
+    @product = current_user_rendering.test_products.new(product_params)
     if @product.save
-      redirect_to test_products_path
+      redirect_to test_products_path, status: :created
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,7 +27,7 @@ class TestProductsController < ApplicationController
     if @product.update(product_params)
       redirect_to test_products_path
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end 
   end
 
