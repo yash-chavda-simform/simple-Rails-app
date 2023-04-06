@@ -15,7 +15,7 @@ class TestProductsController < ApplicationController
   def create
     @product = current_user_rendering.test_products.new(product_params)
     if @product.save
-      redirect_to test_products_path, status: :created
+      redirect_to test_products_path
     else
       render :new, status: :unprocessable_entity
     end

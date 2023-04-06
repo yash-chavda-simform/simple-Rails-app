@@ -77,5 +77,4 @@ RSpec.describe CustomersController, type: :controller do
       expect(response).to redirect_to(customers_url)
     end
   end
-
 end

@@ -1,38 +1,47 @@
 require 'rails_helper'
-Devise::Test::IntegrationHelpers
 RSpec.describe "CheckRequests", type: :request do
-  user = UserRendering.first
-  product = user.test_products.create(product_name: "Led", price: 45000, description: "led")
-  describe "GET /index" do
-    it "render successfully" do
-      get test_products_url
-      expect(response).to have_http_status(302)
+  before(:each) do
+    @user = FactoryBot.create(:user_rendering)
+    sign_in @user
+  end
+
+  describe "GET /test_products" do
+    it "returns a 200 status code" do
+      get test_products_path
+      expect(response).to have_http_status(200)
     end
   end
 
-  describe "GET /show" do
-    it "show page" do
-      get test_product_url(product)
-      expect(response).to have_http_status(302)
+  describe "POST /test_products" do
+    it "create new product" do
+      expect {
+        post test_products_path, params: { test_product: FactoryBot.attributes_for(:test_product) }
+      }.to change(TestProduct, :count).by(1)
     end
   end
 
-  describe "POST /create" do
-    before do
-      @request.env["devise.mapping"] = Devise.mappings[:user_rendering]
+  describe "GET /test_product/:id" do
+    it "successfully move on show action" do
+      product = FactoryBot.create(:test_product)
+      get test_product_path(product)
+      expect(response).to have_http_status(200)
     end
-    @user = UserRendering.create(email: "yash6@gmail.com",password:"123456")
-    
-    it "create product" do
-      sign_in @user 
-        # user = UserRendering.create(email: "yash6@gmail.com",password:"123456")
-        # test_product_params = { description: "A test product", price: 10.99, user_rendering_id: user.id }
-        # valid_attributes = { test_product: test_product_params }
-        # post "/test_products", params: valid_attributes
-        # # follow_redirect!
-        # binding.pry
-        # # expect(response).to have_http_status(:ok)
-        # expect(response).to render_template("new")
+  end
+
+  describe "PUT /test_product/:id" do
+    it "update product" do
+      product = FactoryBot.create(:test_product)
+      put test_product_path(product), params: { test_product: { product_name: "Fan" } }
+      expect(product.reload.product_name).to eq("Fan")
+    end
+  end
+
+  describe "DELETE /test_product/:id" do
+    it "destroys an existing product" do
+      product = FactoryBot.create(:test_product)
+      expect {
+        delete test_product_path(product)
+      }.to change(TestProduct, :count).by(-1)
     end
   end
 end

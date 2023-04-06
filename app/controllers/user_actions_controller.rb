@@ -14,8 +14,7 @@ class UserActionsController < ApplicationController
   def create
     @user = UserAction.new(user_params)
     if @user.save
-      UserMailer.with(user: @user).welcome_email.deliver_later
-      flash[:success] = "User Is Created."
+      UserMailer.welcome_email(@user).deliver_later
       redirect_to user_actions_path
     else
       render :new
