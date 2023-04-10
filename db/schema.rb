@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_14_101023) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_101023) do
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.date "dob"
+    t.date "date_of_birth"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -240,6 +240,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_101023) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "test_products", force: :cascade do |t|
+    t.string "product_name"
+    t.decimal "price"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_rendering_id", null: false
+    t.index ["user_rendering_id"], name: "index_test_products_on_user_rendering_id"
+  end
+
+  create_table "user_actions", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "profile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_renderings", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -281,6 +299,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_14_101023) do
   add_foreign_key "order_routers", "product_routers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "query_products"
+  add_foreign_key "test_products", "user_renderings"
   add_foreign_key "users_events", "events"
   add_foreign_key "users_events", "users"
 end

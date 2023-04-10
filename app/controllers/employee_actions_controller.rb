@@ -9,7 +9,7 @@ class EmployeeActionsController < ApplicationController
 
   def new
     @employee = EmployeeAction.new
-    @employee.address_actions.build 
+    2.times { @employee.address_actions.build } 
   end
 
   def create
