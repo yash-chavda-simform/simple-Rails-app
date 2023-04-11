@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "address_actions", force: :cascade do |t|
+    t.string "house_name"
+    t.string "street_name"
+    t.string "road"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "employee_action_id", null: false
+    t.index ["employee_action_id"], name: "index_address_actions_on_employee_action_id"
+  end
 
   create_table "addresses", force: :cascade do |t|
     t.text "content"
@@ -25,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
   create_table "authors", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.date "dob"
+    t.date "date_of_birth"
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,6 +90,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
     t.string "last_name"
     t.string "email"
     t.string "phone_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employee_actions", force: :cascade do |t|
+    t.string "employee_name"
+    t.string "email"
+    t.string "password_digest"
+    t.string "gender"
+    t.string "address"
+    t.string "mobile_number"
+    t.date "birth_date"
+    t.boolean "hobbies"
+    t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -216,6 +240,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "test_products", force: :cascade do |t|
+    t.string "product_name"
+    t.decimal "price"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_rendering_id", null: false
+    t.index ["user_rendering_id"], name: "index_test_products_on_user_rendering_id"
+  end
+
+  create_table "user_actions", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "profile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_renderings", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -245,6 +287,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
     t.index ["user_id"], name: "index_users_events_on_user_id"
   end
 
+  add_foreign_key "address_actions", "employee_actions"
   add_foreign_key "books", "authors"
   add_foreign_key "comments", "events"
   add_foreign_key "comments", "users"
@@ -256,6 +299,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_09_090857) do
   add_foreign_key "order_routers", "product_routers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "query_products"
+  add_foreign_key "test_products", "user_renderings"
   add_foreign_key "users_events", "events"
   add_foreign_key "users_events", "users"
 end

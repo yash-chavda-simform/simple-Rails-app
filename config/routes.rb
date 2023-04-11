@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post 'new_users/login', to: 'new_users#authenticate'
   get 'order_renderings', to: 'order_renderings#index'
   root "product_renderings#index"
+  get 'employee/search', to: 'employee_actions#search'
   resources :products
   resources :books
   resources :authors
@@ -63,6 +64,7 @@ Rails.application.routes.draw do
   end
 
   resources :product_renderings
+  resources :employee_actions
   #get "/products/:id", to: "products#show"
   # get "/products/:id", to: "products#show"
   #resource :products
