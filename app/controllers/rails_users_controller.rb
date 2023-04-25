@@ -1,5 +1,5 @@
 class RailsUsersController < ApplicationController
-  before_action :require_login, only: [:logout]
+  before_action :require_rails_login, only: [:logout]
   def new
     @user = RailsUser.new
   end
@@ -20,7 +20,7 @@ class RailsUsersController < ApplicationController
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to posts_path
-    else
+    else 
       flash[:danger] = 'Invalid email or password.'
       redirect_to rails_users_login_path
     end

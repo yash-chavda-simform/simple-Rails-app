@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :require_login
+  before_action :require_rails_login
   before_action :find_post, only: [:show, :edit, :update, :destroy, :view_comment, :like_post]
   def index
     @posts = Post.all
@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   end
   
   def create
-    @post = current_user.posts.build(post_params)
+    @post = current_rails_user.posts.build(post_params)
     if @post.save
       respond_to do |format|
         format.html { redirect_to posts_yourpost_path }
@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   def your_post
-    @posts = current_user.posts
+    @posts = current_rails_user.posts
   end
 
   def view_comment
@@ -47,10 +47,11 @@ class PostsController < ApplicationController
   end
 
   def like_post
-    if current_user.liked_posts.include?(@post)
-      current_user.liked_posts.delete(@post)  
+    @like = PostLike.find_by(rails_user_id:current_rails_user.id, post_id: @post.id)
+    if @like
+      @like.destroy  
     else
-      current_user.liked_posts << @post
+      @like = PostLike.create(rails_user_id:current_rails_user.id, post_id: @post.id)
     end
     redirect_to posts_path
   end 

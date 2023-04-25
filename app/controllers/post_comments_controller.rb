@@ -1,5 +1,5 @@
 class PostCommentsController < ApplicationController
-  before_action :require_login
+  before_action :require_rails_login
   
   def new
     @comment = PostComment.new

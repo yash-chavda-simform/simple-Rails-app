@@ -10,15 +10,15 @@
         <th scope="col">View Comment</th>
       </tr>
     </thead>
-    <% @posts.each do |p|%>
+    <% @posts.each do |post|%>
       <tr>
-        <td><%= p.title %></td>
-        <td><%= image_tag(p.image.url, alt: 'Image', style: "width: 50px; height:55px; display:block") if p.image? %></td>
-        <td><%= link_to p.total_like, like_post_post_path(p) , class:"btn btn-info" %></td>
-        <td><%= link_to "Add Comment", new_post_post_comment_path(p), class:"btn btn-success" %></td>
-        <td><% p.post_comments.each do |c|%>
-            <%= c.comment %>
-            <%= " - " + c.rails_user.first_name %><br>
+        <td><%= post.title %></td>
+        <td><%= image_tag(post.image.url, alt: 'Image', style: "width: 50px; height:55px; display:block") if post.image? %></td>
+        <td><%= link_to post.total_like, like_post_post_path(post) , class:"btn btn-info" %></td>
+        <td><%= link_to "Add Comment", new_post_post_comment_path(post), class:"btn btn-success" %></td>
+        <td><% post.post_comments.each do |comment|%>
+            <%= comment.comment %>
+            <%= " - " + comment.rails_user.first_name %><br>
         <% end %></td>
     </tr>
   <% end %>

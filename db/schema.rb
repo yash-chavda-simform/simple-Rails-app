@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_101428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -208,11 +208,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
     t.index ["rails_user_id"], name: "index_post_comments_on_rails_user_id"
   end
 
-  create_table "post_javascripts", force: :cascade do |t|
-    t.string "name"
-    t.string "image"
+  create_table "post_likes", force: :cascade do |t|
+    t.bigint "rails_user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_likes_on_post_id"
+    t.index ["rails_user_id"], name: "index_post_likes_on_rails_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -222,12 +224,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rails_user_id"], name: "index_posts_on_rails_user_id"
-  end
-
-  create_table "posts_rails_users", id: false, force: :cascade do |t|
-    t.bigint "post_id", null: false
-    t.bigint "rails_user_id", null: false
-    t.index ["post_id", "rails_user_id"], name: "index_posts_rails_users_on_post_id_and_rails_user_id", unique: true
   end
 
   create_table "product_renderings", force: :cascade do |t|
@@ -340,10 +336,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
   add_foreign_key "order_routers", "product_routers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "query_products"
-  add_foreign_key "test_products", "user_renderings"
   add_foreign_key "post_comments", "posts"
   add_foreign_key "post_comments", "rails_users"
+  add_foreign_key "post_likes", "posts"
+  add_foreign_key "post_likes", "rails_users"
   add_foreign_key "posts", "rails_users"
+  add_foreign_key "test_products", "user_renderings"
   add_foreign_key "users_events", "events"
   add_foreign_key "users_events", "users"
 end

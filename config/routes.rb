@@ -39,7 +39,6 @@ Rails.application.routes.draw do
     resources :post_comments, only: [:new]   
   end
   resources :post_comments, only: [:create]
-  root "products#index"
   resources :products
   resources :books
   resources :authors
