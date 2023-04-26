@@ -1,0 +1,28 @@
+<div class="container">
+  <h3>ALL Post</h3>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Image</th>
+        <th scope="col">Like</th>
+        <th scope="col">Add Comment</th>
+        <th scope="col">View Comment</th>
+      </tr>
+    </thead>
+    <% @posts.each do |post|%>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%= image_tag(post.image.url, alt: 'Image', style: "width: 50px; height:55px; display:block") if post.image? %></td>
+        <td><%= link_to post.total_like, like_post_post_path(post) , class:"btn btn-info" %></td>
+        <td><%= link_to "Add Comment", new_post_post_comment_path(post), class:"btn btn-success" %></td>
+        <td><% post.post_comments.each do |comment|%>
+            <%= comment.comment %>
+            <%= " - " + comment.rails_user.first_name %><br>
+        <% end %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to "Your Post", posts_yourpost_path, class:"btn btn-primary" %>
+<%= link_to "Logout", rails_users_logout_path, class:"btn btn-primary" %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_101428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -198,6 +198,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
     t.index ["query_product_id"], name: "index_orders_on_query_product_id"
   end
 
+  create_table "post_comments", force: :cascade do |t|
+    t.string "comment"
+    t.bigint "rails_user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_comments_on_post_id"
+    t.index ["rails_user_id"], name: "index_post_comments_on_rails_user_id"
+  end
+
+  create_table "post_likes", force: :cascade do |t|
+    t.bigint "rails_user_id", null: false
+    t.bigint "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_likes_on_post_id"
+    t.index ["rails_user_id"], name: "index_post_likes_on_rails_user_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "image"
+    t.bigint "rails_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rails_user_id"], name: "index_posts_on_rails_user_id"
+  end
+
   create_table "product_renderings", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
@@ -226,6 +254,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
     t.integer "capacity"
     t.boolean "is_active"
     t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rails_users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -299,6 +336,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_100403) do
   add_foreign_key "order_routers", "product_routers"
   add_foreign_key "orders", "customers"
   add_foreign_key "orders", "query_products"
+  add_foreign_key "post_comments", "posts"
+  add_foreign_key "post_comments", "rails_users"
+  add_foreign_key "post_likes", "posts"
+  add_foreign_key "post_likes", "rails_users"
+  add_foreign_key "posts", "rails_users"
   add_foreign_key "test_products", "user_renderings"
   add_foreign_key "users_events", "events"
   add_foreign_key "users_events", "users"

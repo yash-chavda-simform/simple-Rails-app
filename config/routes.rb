@@ -27,6 +27,18 @@ Rails.application.routes.draw do
   get 'order_renderings', to: 'order_renderings#index'
   root "product_renderings#index"
   get 'employee/search', to: 'employee_actions#search'
+  get "rails_users/signup", to: "rails_users#new"
+  post "rails_users/signup", to: "rails_users#create"
+  get "rails_users/login", to: "rails_users#login"
+  post "rails_users/login", to: "rails_users#authenticate"
+  get "rails_users/logout", to: "rails_users#logout"
+  get "posts/yourpost", to: "posts#your_post"
+  resources :posts do
+    get 'view_comment', on: :member
+    get 'like_post', on: :member
+    resources :post_comments, only: [:new]   
+  end
+  resources :post_comments, only: [:create]
   resources :products
   resources :books
   resources :authors

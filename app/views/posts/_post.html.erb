@@ -1,0 +1,11 @@
+<%= turbo_frame_tag "edit_post_#{post.id}" do %>
+  Title: <%= post.title %><br>
+  image: <%= image_tag(post.image.url, alt: 'Image', style: "width: 50px; height:55px; display:block") if post.image? %>
+  <%= link_to 'Details' , post %>
+  <%= link_to "Edit", edit_post_path(post), class:"btn btn-primary" %>
+  <%= link_to "Delete", post_path(post), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %><br>
+  <br>
+<% end %>

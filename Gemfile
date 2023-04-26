@@ -30,7 +30,7 @@ gem "jbuilder"
 gem 'bcrypt', '~> 3.1', '>= 3.1.12'
 
 gem "devise"
-gem 'carrierwave'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -50,8 +50,15 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 #debugger
 gem 'pry'
+#bootstrap
+gem 'bootstrap'
+#to show image
+
 #pdf
 gem 'prawn'
+
+#to show image
+gem 'carrierwave', '~> 1.0'
 #bootstrap
 # Use Sass to process CSS
 # gem "sassc-rails"
