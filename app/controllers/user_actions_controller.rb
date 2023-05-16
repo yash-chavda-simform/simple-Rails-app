@@ -15,6 +15,7 @@ class UserActionsController < ApplicationController
     @user = UserAction.new(user_params)
     if @user.save
       UserMailer.with(user: @user).welcome_email.deliver_later
+      flash[:success] = "User Is Created."
       redirect_to user_actions_path
     else
       render :new
@@ -27,6 +28,7 @@ class UserActionsController < ApplicationController
     if @user.update(user_params)
       if @user.saved_changes.include?('email')
         UserMailer.with(user: @user).update_email.deliver_later
+        flash[:success] = "User Is Updated."
       end
       redirect_to user_actions_path
     else
@@ -35,7 +37,11 @@ class UserActionsController < ApplicationController
   end
 
   def destroy
-    @user.delete
+    if @user.destroy
+      flash[:success] = "User Is Deleted."
+    else
+      flash[:danger] = "User Is Not Deleted."
+    end
     redirect_to user_actions_path
   end
 

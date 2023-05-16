@@ -7,6 +7,8 @@ class UserMailer < ApplicationMailer
 
   def update_email
     @user = params[:user]
-    mail(to: @user.email, subject: "Email Is Updated")
+    mail(to: @user.email, subject: "Email Is Updated") do |format|
+      format.text(content_type: "text/plain")
+    end
   end
 end
