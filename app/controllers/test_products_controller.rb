@@ -15,6 +15,7 @@ class TestProductsController < ApplicationController
   def create
     @product = current_user_rendering.test_products.new(product_params)
     if @product.save
+      flash[:success] = "product Created"
       redirect_to test_products_path
     else
       render :new, status: :unprocessable_entity
@@ -25,6 +26,7 @@ class TestProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
+      flash[:success] = "product Updated"
       redirect_to test_products_path
     else
       render :edit, status: :unprocessable_entity
@@ -32,11 +34,16 @@ class TestProductsController < ApplicationController
   end
 
   def destroy
-    @product.delete
+    if @product.destroy
+      flash[:success] = "product Deleted"
+    else
+      flash[:danger] = "product Not Deleted"
+    end
     redirect_to test_products_path
   end
 
   private
+
   def product_params
     params.require(:test_product).permit(:product_name, :price, :description)
   end
