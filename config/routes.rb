@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   resources :orders
   resources :query_products
   resources :cars
-  
+  resources :user_actions
 
   resources :product_routers do
     resources :order_routers

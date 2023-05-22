@@ -216,6 +216,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_101428) do
     t.index ["post_id"], name: "index_post_likes_on_post_id"
     t.index ["rails_user_id"], name: "index_post_likes_on_rails_user_id"
   end
+  
+  create_table "post_javascripts", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"
@@ -224,6 +231,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_101428) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["rails_user_id"], name: "index_posts_on_rails_user_id"
+  end
+
+  create_table "posts_rails_users", id: false, force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "rails_user_id", null: false
+    t.index ["post_id", "rails_user_id"], name: "index_posts_rails_users_on_post_id_and_rails_user_id", unique: true
   end
 
   create_table "product_renderings", force: :cascade do |t|

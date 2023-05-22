@@ -32,7 +32,6 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
@@ -67,4 +66,18 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {host:'localhost', port: 3000}
+  config.action_mailer.smtp_settings = {
+    address:              Rails.application.credentials.smtp_address,
+    port:                 Rails.application.credentials.smtp_port,
+    domain:               Rails.application.credentials.smtp_domain,
+    user_name:            Rails.application.credentials.smtp_username,
+    password:             Rails.application.credentials.smtp_password,
+    authentication:       Rails.application.credentials.smtp_authentication,
+    enable_starttls_auto: Rails.application.credentials.smtp_enable_starttls_auto,
+    open_timeout:         Rails.application.credentials.smtp_open_timeout,
+    read_timeout:         Rails.application.credentials.smtp_read_timeout }
 end

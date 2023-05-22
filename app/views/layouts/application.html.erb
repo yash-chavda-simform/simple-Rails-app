@@ -13,12 +13,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-<%= type %>">
+        <%= msg %>
+      </div>
+    <% end %>
     <div class="container">
-      <% flash.each do |type, msg| %>
-        <div class="alert alert-<%= type %>">
-          <%= msg %>
-        </div>
-      <% end %>
       <%= yield %>
     </div>
   </body>
