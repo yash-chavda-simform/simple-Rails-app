@@ -22,11 +22,13 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+  
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
   end
 
   private
+
   def set_layout
     authenticate_user_rendering!.role.eql?("admin") ? "admin" : "merchant"
   end

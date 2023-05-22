@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   get 'users/signup', to: 'users#new'
   get 'users/signup', to: 'users#new'
   get 'orders/result', to: 'orders#query_result'
-  get 'sessions/logout', to: 'sessions#logout'
-  get 'sessions/profile', to: 'sessions#profile'
   get '/comments/like/:id', to: 'comments#like'
   get '/comments/unlike/:id', to: 'comments#unlike'
   get '/comments/add/:id', to: 'comments#add'
@@ -55,6 +53,8 @@ Rails.application.routes.draw do
   resources :query_products
   resources :cars
   resources :user_actions
+  resources :test_products
+  
 
   resources :product_routers do
     resources :order_routers

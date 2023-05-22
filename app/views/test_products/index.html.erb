@@ -1,0 +1,33 @@
+<div class="container">
+  <h3>Product List</h3>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Descriptions</th>
+        <th scope="col">Price</th>
+        <th scope="col">Details</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.product_name %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
+        <td><%= link_to 'Details' , product %>
+        </td>
+        <td><%= link_to "Edit", edit_test_product_path(product), class:"btn btn-primary" %></td>
+        <td><%= link_to "Delete", test_product_path(product), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                      }, class:"btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "Add Product", new_test_product_path, class:"btn btn-primary" %>
+  <%= link_to "Logout", destroy_user_rendering_session_path, data: {
+                        turbo_method: :delete
+                      }, class:"btn btn-primary" %>
+</div>
